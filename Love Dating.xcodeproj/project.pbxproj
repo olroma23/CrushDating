@@ -9,21 +9,27 @@
 /* Begin PBXBuildFile section */
 		ECC4726624C9FE76006B800A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC4726524C9FE76006B800A /* AppDelegate.swift */; };
 		ECC4726824C9FE76006B800A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC4726724C9FE76006B800A /* SceneDelegate.swift */; };
-		ECC4726A24C9FE76006B800A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC4726924C9FE76006B800A /* ViewController.swift */; };
-		ECC4726D24C9FE76006B800A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECC4726B24C9FE76006B800A /* Main.storyboard */; };
 		ECC4726F24C9FE78006B800A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECC4726E24C9FE78006B800A /* Assets.xcassets */; };
 		ECC4727224C9FE78006B800A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECC4727024C9FE78006B800A /* LaunchScreen.storyboard */; };
+		ECC4727A24C9FF59006B800A /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC4727924C9FF59006B800A /* AuthViewController.swift */; };
+		ECC4727C24CA19AB006B800A /* UIButton + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC4727B24CA19AB006B800A /* UIButton + Extension.swift */; };
+		ECEF76C824CA2048000E39B2 /* UILabel + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEF76C724CA2048000E39B2 /* UILabel + Extension.swift */; };
+		ECEF76CA24CA24E2000E39B2 /* UIImageView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEF76C924CA24E2000E39B2 /* UIImageView + Extension.swift */; };
+		ECEF76CC24CA3121000E39B2 /* UIFont + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEF76CB24CA3121000E39B2 /* UIFont + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		ECC4726224C9FE76006B800A /* Love Dating.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Love Dating.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC4726524C9FE76006B800A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECC4726724C9FE76006B800A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		ECC4726924C9FE76006B800A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		ECC4726C24C9FE76006B800A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ECC4726E24C9FE78006B800A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ECC4727124C9FE78006B800A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ECC4727324C9FE78006B800A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECC4727924C9FF59006B800A /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		ECC4727B24CA19AB006B800A /* UIButton + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
+		ECEF76C724CA2048000E39B2 /* UILabel + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extension.swift"; sourceTree = "<group>"; };
+		ECEF76C924CA24E2000E39B2 /* UIImageView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Extension.swift"; sourceTree = "<group>"; };
+		ECEF76CB24CA3121000E39B2 /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +64,32 @@
 			children = (
 				ECC4726524C9FE76006B800A /* AppDelegate.swift */,
 				ECC4726724C9FE76006B800A /* SceneDelegate.swift */,
-				ECC4726924C9FE76006B800A /* ViewController.swift */,
-				ECC4726B24C9FE76006B800A /* Main.storyboard */,
 				ECC4726E24C9FE78006B800A /* Assets.xcassets */,
 				ECC4727024C9FE78006B800A /* LaunchScreen.storyboard */,
 				ECC4727324C9FE78006B800A /* Info.plist */,
+				ECC4727924C9FF59006B800A /* AuthViewController.swift */,
+				ECEF76CE24CA3221000E39B2 /* Extensions */,
 			);
 			path = "Love Dating";
+			sourceTree = "<group>";
+		};
+		ECEF76CD24CA3202000E39B2 /* UIKit Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				ECC4727B24CA19AB006B800A /* UIButton + Extension.swift */,
+				ECEF76CB24CA3121000E39B2 /* UIFont + Extension.swift */,
+				ECEF76C724CA2048000E39B2 /* UILabel + Extension.swift */,
+				ECEF76C924CA24E2000E39B2 /* UIImageView + Extension.swift */,
+			);
+			path = "UIKit Extensions";
+			sourceTree = "<group>";
+		};
+		ECEF76CE24CA3221000E39B2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				ECEF76CD24CA3202000E39B2 /* UIKit Extensions */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +152,6 @@
 			files = (
 				ECC4727224C9FE78006B800A /* LaunchScreen.storyboard in Resources */,
 				ECC4726F24C9FE78006B800A /* Assets.xcassets in Resources */,
-				ECC4726D24C9FE76006B800A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +162,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECC4726A24C9FE76006B800A /* ViewController.swift in Sources */,
+				ECEF76CA24CA24E2000E39B2 /* UIImageView + Extension.swift in Sources */,
+				ECC4727A24C9FF59006B800A /* AuthViewController.swift in Sources */,
+				ECEF76C824CA2048000E39B2 /* UILabel + Extension.swift in Sources */,
 				ECC4726624C9FE76006B800A /* AppDelegate.swift in Sources */,
 				ECC4726824C9FE76006B800A /* SceneDelegate.swift in Sources */,
+				ECEF76CC24CA3121000E39B2 /* UIFont + Extension.swift in Sources */,
+				ECC4727C24CA19AB006B800A /* UIButton + Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		ECC4726B24C9FE76006B800A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ECC4726C24C9FE76006B800A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		ECC4727024C9FE78006B800A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

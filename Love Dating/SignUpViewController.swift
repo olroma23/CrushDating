@@ -16,9 +16,9 @@ class SignUpViewController: UIViewController {
     let confirmPasswordLabel = UILabel(text: "Confirm password")
     let alreadyOnBoardLabel = UILabel(text: "Already on board?")
     
-    let emailTF = OneLineTextField()
-    let passwordTF = OneLineTextField()
-    let confirmPasswordTF = OneLineTextField()
+    let emailTF = UITextField(style: true)
+    let passwordTF = UITextField(style: true)
+    let confirmPasswordTF = UITextField(style: true)
     
     let signUpButton = UIButton(title: "Sign up", titleColor: .white, bgc: #colorLiteral(red: 0.1999762356, green: 0.200016588, blue: 0.1999709308, alpha: 1), isShadow: false, cornerRadius: 4)
     let loginButton = UIButton(type: .system)
@@ -36,10 +36,6 @@ class SignUpViewController: UIViewController {
         setupConstraints()
         
     }
-    
-
-    
-    
     
 }
 

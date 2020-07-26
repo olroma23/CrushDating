@@ -12,8 +12,8 @@ class AuthViewController: UIViewController {
     
     let logoImageView = UIImageView(image: #imageLiteral(resourceName: "crushLogo"), contentMode: .scaleAspectFit)
     
-    let googleLabel = UILabel(text: "Get started with")
-    let emailLabel = UILabel(text: "Or sign up with")
+    let googleLabel = UILabel(text: "Get started with:")
+    let emailLabel = UILabel(text: "Or sign up with:")
     let loginLabel = UILabel(text: "Are you already on board?")
     
     let googleButton = UIButton(title: "Google", titleColor: .black, bgc: .white, isShadow: true)

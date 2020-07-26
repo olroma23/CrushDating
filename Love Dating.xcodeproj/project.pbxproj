@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC662C8824CDADA9009FD31E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC662C8724CDADA9009FD31E /* LogInViewController.swift */; };
 		EC7A7F2C24CB854D0004B5D0 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A7F2B24CB854D0004B5D0 /* SignUpViewController.swift */; };
-		EC7A7F2E24CB8C7A0004B5D0 /* OneLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A7F2D24CB8C7A0004B5D0 /* OneLineTextField.swift */; };
+		EC7A7F2E24CB8C7A0004B5D0 /* UITextFIeld + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A7F2D24CB8C7A0004B5D0 /* UITextFIeld + Extension.swift */; };
 		ECC4726624C9FE76006B800A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC4726524C9FE76006B800A /* AppDelegate.swift */; };
 		ECC4726824C9FE76006B800A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC4726724C9FE76006B800A /* SceneDelegate.swift */; };
 		ECC4726F24C9FE78006B800A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECC4726E24C9FE78006B800A /* Assets.xcassets */; };
@@ -23,8 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC662C8724CDADA9009FD31E /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		EC7A7F2B24CB854D0004B5D0 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		EC7A7F2D24CB8C7A0004B5D0 /* OneLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneLineTextField.swift; sourceTree = "<group>"; };
+		EC7A7F2D24CB8C7A0004B5D0 /* UITextFIeld + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextFIeld + Extension.swift"; sourceTree = "<group>"; };
 		ECC4726224C9FE76006B800A /* Love Dating.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Love Dating.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC4726524C9FE76006B800A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECC4726724C9FE76006B800A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				ECC4727324C9FE78006B800A /* Info.plist */,
 				ECC4727924C9FF59006B800A /* AuthViewController.swift */,
 				EC7A7F2B24CB854D0004B5D0 /* SignUpViewController.swift */,
+				EC662C8724CDADA9009FD31E /* LogInViewController.swift */,
 				ECEF76CE24CA3221000E39B2 /* Extensions */,
 			);
 			path = "Love Dating";
@@ -85,6 +88,7 @@
 		ECEF76CD24CA3202000E39B2 /* UIKit Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				EC7A7F2D24CB8C7A0004B5D0 /* UITextFIeld + Extension.swift */,
 				ECC4727B24CA19AB006B800A /* UIButton + Extension.swift */,
 				ECEF76CB24CA3121000E39B2 /* UIFont + Extension.swift */,
 				ECEF76C724CA2048000E39B2 /* UILabel + Extension.swift */,
@@ -98,7 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				ECEF76CF24CB5E05000E39B2 /* ButtonFormView.swift */,
-				EC7A7F2D24CB8C7A0004B5D0 /* OneLineTextField.swift */,
 				ECEF76CD24CA3202000E39B2 /* UIKit Extensions */,
 			);
 			path = Extensions;
@@ -180,8 +183,9 @@
 				ECEF76D024CB5E05000E39B2 /* ButtonFormView.swift in Sources */,
 				EC7A7F2C24CB854D0004B5D0 /* SignUpViewController.swift in Sources */,
 				ECEF76C824CA2048000E39B2 /* UILabel + Extension.swift in Sources */,
-				EC7A7F2E24CB8C7A0004B5D0 /* OneLineTextField.swift in Sources */,
+				EC7A7F2E24CB8C7A0004B5D0 /* UITextFIeld + Extension.swift in Sources */,
 				ECC4726624C9FE76006B800A /* AppDelegate.swift in Sources */,
+				EC662C8824CDADA9009FD31E /* LogInViewController.swift in Sources */,
 				ECC4726824C9FE76006B800A /* SceneDelegate.swift in Sources */,
 				ECEF76CC24CA3121000E39B2 /* UIFont + Extension.swift in Sources */,
 				ECC4727C24CA19AB006B800A /* UIButton + Extension.swift in Sources */,

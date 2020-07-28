@@ -49,7 +49,6 @@ extension SignUpViewController {
         let passwordStackView = UIStackView(arrangedSubviews: [passwordLabel, passwordTF], axis: .vertical, spacing: 0)
         let confirmPasswordStackView = UIStackView(arrangedSubviews: [confirmPasswordLabel, confirmPasswordTF], axis: .vertical, spacing: 0)
         
-        signUpButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
         let stackView = UIStackView(arrangedSubviews: [emailStackView, passwordStackView, confirmPasswordStackView, signUpButton], axis: .vertical, spacing: 40)
         let buttonStackView = UIStackView(arrangedSubviews: [alreadyOnBoardLabel, loginButton], axis: .horizontal, spacing: 20)

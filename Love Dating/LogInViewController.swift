@@ -60,8 +60,6 @@ extension LogInViewController {
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([welcomeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 130),
                                      welcomeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)])
-        googleButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        loginButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
         let googleStackView = UIStackView(arrangedSubviews: [googleLabel, googleButton], axis: .vertical, spacing: 20)
         let emailStackView = UIStackView(arrangedSubviews: [emailLabel, emailTF], axis: .vertical, spacing: 0)

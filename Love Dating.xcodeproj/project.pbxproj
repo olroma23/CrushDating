@@ -10,6 +10,9 @@
 		EC662C8824CDADA9009FD31E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC662C8724CDADA9009FD31E /* LogInViewController.swift */; };
 		EC7A7F2C24CB854D0004B5D0 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A7F2B24CB854D0004B5D0 /* SignUpViewController.swift */; };
 		EC7A7F2E24CB8C7A0004B5D0 /* UITextFIeld + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A7F2D24CB8C7A0004B5D0 /* UITextFIeld + Extension.swift */; };
+		ECB3E83B24D0667000B490FE /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB3E83A24D0667000B490FE /* ListViewController.swift */; };
+		ECB3E84224D07C5400B490FE /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB3E84124D07C5400B490FE /* MainTabBarViewController.swift */; };
+		ECB3E84424D07C8D00B490FE /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB3E84324D07C8D00B490FE /* PeopleViewController.swift */; };
 		ECB6ECD224CDF8F60026CD73 /* SetupProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6ECD124CDF8F60026CD73 /* SetupProfileViewController.swift */; };
 		ECB6ECD424CE1D030026CD73 /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6ECD324CE1D030026CD73 /* UIImage + Extension.swift */; };
 		ECB6ECD624CE1F4B0026CD73 /* AddPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6ECD524CE1F4B0026CD73 /* AddPhotoView.swift */; };
@@ -30,6 +33,9 @@
 		EC662C8724CDADA9009FD31E /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		EC7A7F2B24CB854D0004B5D0 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		EC7A7F2D24CB8C7A0004B5D0 /* UITextFIeld + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextFIeld + Extension.swift"; sourceTree = "<group>"; };
+		ECB3E83A24D0667000B490FE /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		ECB3E84124D07C5400B490FE /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		ECB3E84324D07C8D00B490FE /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
 		ECB6ECD124CDF8F60026CD73 /* SetupProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupProfileViewController.swift; sourceTree = "<group>"; };
 		ECB6ECD324CE1D030026CD73 /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
 		ECB6ECD524CE1F4B0026CD73 /* AddPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotoView.swift; sourceTree = "<group>"; };
@@ -59,6 +65,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ECB3E83D24D07BEB00B490FE /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				ECC4727924C9FF59006B800A /* AuthViewController.swift */,
+				EC7A7F2B24CB854D0004B5D0 /* SignUpViewController.swift */,
+				EC662C8724CDADA9009FD31E /* LogInViewController.swift */,
+				ECB6ECD124CDF8F60026CD73 /* SetupProfileViewController.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		ECB3E83E24D07C0B00B490FE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				ECB3E83A24D0667000B490FE /* ListViewController.swift */,
+				ECB3E84324D07C8D00B490FE /* PeopleViewController.swift */,
+				ECB3E84124D07C5400B490FE /* MainTabBarViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		ECC4725924C9FE76006B800A = {
 			isa = PBXGroup;
 			children = (
@@ -83,10 +110,8 @@
 				ECC4726E24C9FE78006B800A /* Assets.xcassets */,
 				ECC4727024C9FE78006B800A /* LaunchScreen.storyboard */,
 				ECC4727324C9FE78006B800A /* Info.plist */,
-				ECC4727924C9FF59006B800A /* AuthViewController.swift */,
-				EC7A7F2B24CB854D0004B5D0 /* SignUpViewController.swift */,
-				EC662C8724CDADA9009FD31E /* LogInViewController.swift */,
-				ECB6ECD124CDF8F60026CD73 /* SetupProfileViewController.swift */,
+				ECB3E83D24D07BEB00B490FE /* Auth */,
+				ECB3E83E24D07C0B00B490FE /* Controllers */,
 				ECEF76CE24CA3221000E39B2 /* Extensions */,
 			);
 			path = "Love Dating";
@@ -189,7 +214,9 @@
 				ECEF76D224CB756D000E39B2 /* StackView + Extension.swift in Sources */,
 				ECEF76CA24CA24E2000E39B2 /* UIImageView + Extension.swift in Sources */,
 				ECC4727A24C9FF59006B800A /* AuthViewController.swift in Sources */,
+				ECB3E84224D07C5400B490FE /* MainTabBarViewController.swift in Sources */,
 				ECEF76D024CB5E05000E39B2 /* ButtonFormView.swift in Sources */,
+				ECB3E84424D07C8D00B490FE /* PeopleViewController.swift in Sources */,
 				EC7A7F2C24CB854D0004B5D0 /* SignUpViewController.swift in Sources */,
 				ECEF76C824CA2048000E39B2 /* UILabel + Extension.swift in Sources */,
 				EC7A7F2E24CB8C7A0004B5D0 /* UITextFIeld + Extension.swift in Sources */,
@@ -200,6 +227,7 @@
 				EC662C8824CDADA9009FD31E /* LogInViewController.swift in Sources */,
 				ECC4726824C9FE76006B800A /* SceneDelegate.swift in Sources */,
 				ECEF76CC24CA3121000E39B2 /* UIFont + Extension.swift in Sources */,
+				ECB3E83B24D0667000B490FE /* ListViewController.swift in Sources */,
 				ECC4727C24CA19AB006B800A /* UIButton + Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

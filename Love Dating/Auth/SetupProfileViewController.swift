@@ -67,6 +67,7 @@ extension SetupProfileViewController {
 
 
 // MARK: SwiftUI configuration
+
 import SwiftUI
 
 struct SetupProfileViewControllerProvider: PreviewProvider {

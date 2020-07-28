@@ -34,5 +34,14 @@ extension UIButton {
         }
     }
     
+    func customizeGoogleButton() {
+        let googleLogo = UIImageView(image: #imageLiteral(resourceName: "google"), contentMode: .scaleAspectFill)
+        googleLogo.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(googleLogo)
+        googleLogo.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 24).isActive = true
+        googleLogo.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        googleLogo.image = googleLogo.image?.resizeImage(20, opaque: false)
+    }
+    
 }
 

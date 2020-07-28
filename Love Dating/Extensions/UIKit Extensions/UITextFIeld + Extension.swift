@@ -22,7 +22,7 @@ extension UITextField {
             self.layer.shadowOffset = CGSize(width: 0.0, height: 1.2)
             self.layer.shadowOpacity = 2.0
             self.layer.shadowRadius = 0.0
-            
+            self.heightAnchor.constraint(equalToConstant: 40).isActive = true
         }
     }
 }

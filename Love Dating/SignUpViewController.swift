@@ -32,7 +32,7 @@ class SignUpViewController: UIViewController {
         loginButton.setTitle("Login", for: .normal)
         loginButton.setTitleColor(.systemPink, for: .normal)
         loginButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        
+                
         setupConstraints()
         
     }

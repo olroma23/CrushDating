@@ -1,0 +1,32 @@
+[
+    {
+        "username": "Jane",
+        "userImageString": "human1",
+        "lastMessage": "How u doin'",
+        "id": 1
+    },
+    {
+        "username": "Emma",
+        "userImageString": "human2",
+        "lastMessage": "Come here",
+        "id": 2
+    },
+    {
+        "username": "Ella",
+        "userImageString": "human3",
+        "lastMessage": "Hahhahah whata fuck",
+        "id": 3
+    },
+    {
+        "username": "Viktor Yanukovich",
+        "userImageString": "human7",
+        "lastMessage": "Ostanovites'",
+        "id": 4
+    },
+    {
+        "username": "Zhenia",
+        "userImageString": "human5",
+        "lastMessage": "Privet",
+        "id": 5
+    }
+]

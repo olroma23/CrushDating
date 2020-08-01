@@ -9,6 +9,7 @@
 import UIKit
 
 struct MChat: Hashable, Decodable {
+    
     var username: String
     var userImageString: String
     var lastMessage: String
@@ -31,6 +32,15 @@ class ListViewController: UIViewController {
     
     enum Section: Int, CaseIterable {
         case waitingChats, activeChats
+        
+        func description() -> String {
+            switch self {
+            case .waitingChats:
+                return "Waiting dates"
+            case .activeChats:
+                return "Active dates"
+            }
+        }
     }
     
     var collectionView: UICollectionView?
@@ -63,8 +73,10 @@ class ListViewController: UIViewController {
         collectionView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView?.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.9725490196, blue: 1, alpha: 1)
         view.addSubview(collectionView!)
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "CellID")
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "CellID_Second")
+        collectionView?.register(ActiveChatCollectionViewCell.self, forCellWithReuseIdentifier: ActiveChatCollectionViewCell.reuseID)
+        collectionView?.register(WaitingChatsCollectionViewCell.self, forCellWithReuseIdentifier: WaitingChatsCollectionViewCell.reuseID)
+        collectionView?.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reuseID)
+        
         
     }
     
@@ -97,6 +109,10 @@ extension ListViewController {
             }
         }
         
+        let config = UICollectionViewCompositionalLayoutConfiguration()
+        config.interSectionSpacing = 30
+        layout.configuration = config
+        
         return layout
     }
     
@@ -109,10 +125,13 @@ extension ListViewController {
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(78))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-                
+        
         let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 8
+        section.interGroupSpacing = 12
         section.contentInsets = NSDirectionalEdgeInsets.init(top: 16, leading: 20, bottom: 0 , trailing: 20)
+        
+        let sectionHeader = createSectionHeader()
+        section.boundarySupplementaryItems = [sectionHeader]
         
         return section
     }
@@ -120,17 +139,28 @@ extension ListViewController {
     private func createWaitingChats() -> NSCollectionLayoutSection {
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-        heightDimension: .fractionalHeight(1))
+                                              heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(84), heightDimension: .absolute(88))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(80), heightDimension: .absolute(80))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 20
         section.contentInsets = NSDirectionalEdgeInsets.init(top: 16, leading: 20, bottom: 0 , trailing: 20)
         section.orthogonalScrollingBehavior = .continuous
+        
+        let sectionHeader = createSectionHeader()
+        section.boundarySupplementaryItems = [sectionHeader]
+        
         return section
+    }
+    
+    private func createSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+        let sectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(1))
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: sectionHeaderSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        
+        return sectionHeader
     }
     
     
@@ -155,19 +185,22 @@ extension ListViewController {
             
             switch section {
             case .activeChats:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellID", for: indexPath)
-                cell.backgroundColor = .systemBlue
-                return cell
+                return self.configure(cellType: ActiveChatCollectionViewCell.self, with: chat, for: indexPath)
             case .waitingChats:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellID_Second", for: indexPath)
-                cell.backgroundColor = .systemPink
-                return cell
+                return self.configure(cellType: WaitingChatsCollectionViewCell.self, with: chat, for: indexPath)
             }
         })
+        
+        dataSource?.supplementaryViewProvider = {
+            collectionView, kind, indexPath in
+            guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeader.reuseID, for: indexPath) as? SectionHeader else { fatalError("Can not create new section header") }
+            guard let section = Section(rawValue: indexPath.section) else { fatalError("Unknown section kind") }
+            sectionHeader.configurate(text: section.description(), textColor: .systemGray2, font: UIFont.boldSystemFont(ofSize: 15))
+            return sectionHeader
+        }
+        
     }
 }
-
-
 
 
 // MARK: UISearchBarDelegate

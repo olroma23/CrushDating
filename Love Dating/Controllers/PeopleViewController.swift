@@ -8,7 +8,31 @@
 
 import UIKit
 
+struct MPeople: Hashable, Decodable {
+    
+    var username: String
+    var userImageString: String
+    var id: Int
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    static func == (lhs: MPeople, rhs: MPeople) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+}
+
 class PeopleViewController: UIViewController {
+    
+    enum Section {
+        case availablePeople
+    }
+    
+    let availablePeople = Bundle.main.decode([MPeople].self, from: "availablePeople.json")
+    var collectionView: UICollectionView?
+    var dataSource: UICollectionViewDiffableDataSource<Section, MPeople>?
     
     override func viewDidLoad() {
         super.viewDidLoad()

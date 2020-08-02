@@ -32,7 +32,7 @@ class PeopleViewController: UIViewController {
         
         setupCollectionView()
         createDataSource()
-        reloadData()
+        reloadData(with: nil)
         
     }
     
@@ -41,7 +41,7 @@ class PeopleViewController: UIViewController {
         collectionView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView?.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.9725490196, blue: 1, alpha: 1)
         view.addSubview(collectionView!)
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "PeopleViewControllerCell")
+        collectionView?.register(PeopleCollectionViewCell.self, forCellWithReuseIdentifier: PeopleCollectionViewCell.reuseID)
         collectionView?.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reuseID)
     }
     
@@ -57,10 +57,14 @@ class PeopleViewController: UIViewController {
     }
     
     
-    private func reloadData() {
+    private func reloadData(with searchText: String?) {
+        let filtered = users.filter { (user) -> Bool in
+            user.contains(filter: searchText)
+        }
+    
         var snapshot = NSDiffableDataSourceSnapshot<Section, MPeople>()
         snapshot.appendSections([.users])
-        snapshot.appendItems(users, toSection: .users)
+        snapshot.appendItems(filtered, toSection: .users)
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
     
@@ -94,7 +98,7 @@ extension PeopleViewController {
                                               heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.5))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.6 ))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
         group.interItemSpacing = .fixed(15)
         
@@ -123,23 +127,13 @@ extension PeopleViewController {
 
 extension PeopleViewController {
     
-    //    private func configure<T: CellConfiguration>(cellType: T.Type, with value: MPeople, for indexPath: IndexPath) -> T {
-    //        guard let cell = collectionView?.dequeueReusableCell(withReuseIdentifier: cellType.reuseID, for: indexPath) as? T else {
-    //            fatalError("Unable to deque \(cellType)")
-    //        }
-    //        cell.configure(with: value)
-    //        return cell
-    //    }
-    
     private func createDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, MPeople>(collectionView: collectionView!, cellProvider: { (collectionView, indexPath, catalog) -> UICollectionViewCell? in
             guard let section = Section(rawValue: indexPath.section) else { fatalError("Unknown section") }
             
             switch section {
             case .users:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PeopleViewControllerCell", for: indexPath)
-                cell.backgroundColor = .systemRed
-                return cell
+                return self.configure(collectionView: collectionView, cellType: PeopleCollectionViewCell.self, with: catalog, for: indexPath)
             }
         })
         
@@ -161,7 +155,7 @@ extension PeopleViewController {
 
 extension PeopleViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+        reloadData(with: searchText)
     }
 }
 

@@ -10,7 +10,7 @@ import UIKit
 
 protocol CellConfiguration {
     static var reuseID: String { get }
-    func configure(with value: MChat)
+    func configure<U: Hashable>(with value: U)
 }
 
 class ActiveChatCollectionViewCell: UICollectionViewCell, CellConfiguration {
@@ -34,9 +34,11 @@ class ActiveChatCollectionViewCell: UICollectionViewCell, CellConfiguration {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+        
     }
     
-    func configure(with value: MChat) {
+    func configure<U>(with value: U) where U : Hashable {
+        let value = value as! MChat
         friendImageView.image = UIImage(named: value.userImageString)
         friendName.text = value.username
         lastMessage.text = value.lastMessage

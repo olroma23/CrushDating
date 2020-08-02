@@ -31,9 +31,7 @@ class ListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        title = "Crush Dating"
-        
+                
         setupCollectionView()
         setupNavigationBar()
         
@@ -89,7 +87,6 @@ extension ListViewController {
                 return self.createActiveChats()
             case .waitingChats:
                 return self.createWaitingChats()
-                
             }
         }
         
@@ -155,23 +152,15 @@ extension ListViewController {
 
 extension ListViewController {
     
-    private func configure<T: CellConfiguration>(cellType: T.Type, with value: MChat, for indexPath: IndexPath) -> T {
-        guard let cell = collectionView?.dequeueReusableCell(withReuseIdentifier: cellType.reuseID, for: indexPath) as? T else {
-            fatalError("Unable to deque \(cellType)")
-        }
-        cell.configure(with: value)
-        return cell
-    }
-    
     private func createDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, MChat>(collectionView: collectionView!, cellProvider: { (collectionView, indexPath, chat) -> UICollectionViewCell? in
             guard let section = Section(rawValue: indexPath.section) else { fatalError("Unknown section") }
             
             switch section {
             case .activeChats:
-                return self.configure(cellType: ActiveChatCollectionViewCell.self, with: chat, for: indexPath)
+                return self.configure(collectionView: collectionView, cellType: ActiveChatCollectionViewCell.self, with: chat, for: indexPath)
             case .waitingChats:
-                return self.configure(cellType: WaitingChatsCollectionViewCell.self, with: chat, for: indexPath)
+                return self.configure(collectionView: collectionView, cellType: WaitingChatsCollectionViewCell.self, with: chat, for: indexPath)
             }
         })
         
@@ -182,7 +171,6 @@ extension ListViewController {
             sectionHeader.configurate(text: section.description(), textColor: .systemGray2, font: UIFont.boldSystemFont(ofSize: 15))
             return sectionHeader
         }
-        
     }
 }
 

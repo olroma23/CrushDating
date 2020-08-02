@@ -21,8 +21,9 @@ class WaitingChatsCollectionViewCell: UICollectionViewCell, CellConfiguration {
         self.clipsToBounds = true
     }
     
-    func configure(with value: MChat) {
-        friendImageView.image = UIImage(named: value.userImageString)
+    func configure<U>(with value: U) where U : Hashable {
+        let value = value as! MChat
+         friendImageView.image = UIImage(named: value.userImageString)
     }
     
     required init?(coder: NSCoder) {
@@ -39,6 +40,7 @@ class WaitingChatsCollectionViewCell: UICollectionViewCell, CellConfiguration {
             friendImageView.topAnchor.constraint(equalTo: self.topAnchor),
             friendImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
+        
     }
     
 }

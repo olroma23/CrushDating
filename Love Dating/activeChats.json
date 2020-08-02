@@ -2,7 +2,7 @@
     {
         "username": "Jane",
         "userImageString": "human1",
-        "lastMessage": "How u doin'",
+        "lastMessage": "How u doin",
         "id": 1
     },
     {
@@ -27,6 +27,24 @@
         "username": "Zhenia",
         "userImageString": "human5",
         "lastMessage": "Privet",
-        "id": 5
+        "id": 50
+    },
+    {
+        "username": "Ella1",
+        "userImageString": "human3",
+        "lastMessage": "whata fuck",
+        "id": 60
+    },
+    {
+        "username": "Barac Obama",
+        "userImageString": "human6",
+        "lastMessage": "Illuminati everywhere",
+        "id": 70
+    },
+    {
+        "username": "Zhenia1",
+        "userImageString": "human5",
+        "lastMessage": "Privet1",
+        "id": 80
     }
 ]

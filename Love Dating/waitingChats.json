@@ -22,5 +22,17 @@
         "userImageString": "human4",
         "lastMessage": "Ostanovites'1",
         "id": 9
+    },
+    {
+        "username": "Viktor Yanukovich",
+        "userImageString": "human7",
+        "lastMessage": "Ostanovites'",
+        "id": 10
+    },
+    {
+        "username": "Zhenia",
+        "userImageString": "human5",
+        "lastMessage": "Privet",
+        "id": 11
     }
 ]

@@ -1,0 +1,57 @@
+[
+    {
+        "username": "Jane1",
+        "userImageString": "human1",
+        "id": 1
+    },
+    {
+        "username": "Emma1",
+        "userImageString": "human2",
+        "id": 2
+    },
+    {
+        "username": "Ella1",
+        "userImageString": "human3",
+        "id": 3
+    },
+    {
+        "username": "Viktor Yanukovich1",
+        "userImageString": "human4",
+        "id": 4
+    },
+    {
+        "username": "Viktor Yanukovich",
+        "userImageString": "human7",
+        "id": 5
+    },
+    {
+        "username": "Zhenia",
+        "userImageString": "human5",
+        "id": 6
+    },
+    {
+        "username": "Jane1",
+        "userImageString": "human1",
+        "id": 7
+    },
+    {
+        "username": "Emma1",
+        "userImageString": "human2",
+        "id": 8
+    },
+    {
+        "username": "Ella1",
+        "userImageString": "human3",
+        "id": 9
+    },
+    {
+        "username": "Viktor Yanukovich1",
+        "userImageString": "human4",
+        "id": 10
+    },
+    {
+        "username": "Viktor Yanukovich",
+        "userImageString": "human7",
+        "id": 11
+    }
+]

@@ -9,12 +9,13 @@
 import UIKit
 
 class MainTabBarViewController: UITabBarController {
-
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
-            
+        
         tabBar.tintColor = .systemPink
+        tabBar.shadowImage = UIImage()
         
         let listViewController = ListViewController()
         let peopleViewController = PeopleViewController()
@@ -23,9 +24,10 @@ class MainTabBarViewController: UITabBarController {
         let convImage = UIImage(systemName: "bubble.left.and.bubble.right", withConfiguration: boldConfiguration)!
         let peopleImage = UIImage(systemName: "person.2", withConfiguration: boldConfiguration)!
         
-        viewControllers = [generateNavagationController(rootViewController: listViewController, title: "Conversasions", image: convImage),
-                           generateNavagationController(rootViewController: peopleViewController, title: "People", image: peopleImage)]
-
+        viewControllers = [ generateNavagationController(rootViewController: peopleViewController, title: "People", image: peopleImage),
+                            generateNavagationController(rootViewController: listViewController, title: "Conversasions", image: convImage)
+        ]
+        
     }
     
     private func generateNavagationController(rootViewController: UIViewController, title: String, image: UIImage) -> UIViewController {
@@ -34,5 +36,5 @@ class MainTabBarViewController: UITabBarController {
         navigationVC.tabBarItem.image = image
         return navigationVC
     }
-
+    
 }

@@ -13,6 +13,9 @@
 		EC80E10424D4A9E50040A589 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80E10324D4A9E50040A589 /* GradientView.swift */; };
 		EC80E10624D4D0A00040A589 /* WaitingChatsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80E10524D4D0A00040A589 /* WaitingChatsCollectionViewCell.swift */; };
 		EC80E10824D5A5160040A589 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80E10724D5A5160040A589 /* SectionHeader.swift */; };
+		EC80E10C24D5FBC70040A589 /* peopleNearBy.json in Resources */ = {isa = PBXBuildFile; fileRef = EC80E10B24D5FBC70040A589 /* peopleNearBy.json */; };
+		EC80E10E24D604ED0040A589 /* MPeople.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80E10D24D604ED0040A589 /* MPeople.swift */; };
+		EC80E11024D6050F0040A589 /* MChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80E10F24D6050F0040A589 /* MChat.swift */; };
 		ECAEC5DD24D1CA4A00F472AA /* activeChats.json in Resources */ = {isa = PBXBuildFile; fileRef = ECAEC5DC24D1CA4A00F472AA /* activeChats.json */; };
 		ECAEC5DF24D1CBFC00F472AA /* waitingChats.json in Resources */ = {isa = PBXBuildFile; fileRef = ECAEC5DE24D1CBFC00F472AA /* waitingChats.json */; };
 		ECAEC5E124D1E3F200F472AA /* Bundle-Decodable .swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAEC5E024D1E3F200F472AA /* Bundle-Decodable .swift */; };
@@ -43,6 +46,9 @@
 		EC80E10324D4A9E50040A589 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		EC80E10524D4D0A00040A589 /* WaitingChatsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingChatsCollectionViewCell.swift; sourceTree = "<group>"; };
 		EC80E10724D5A5160040A589 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
+		EC80E10B24D5FBC70040A589 /* peopleNearBy.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = peopleNearBy.json; sourceTree = "<group>"; };
+		EC80E10D24D604ED0040A589 /* MPeople.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPeople.swift; sourceTree = "<group>"; };
+		EC80E10F24D6050F0040A589 /* MChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MChat.swift; sourceTree = "<group>"; };
 		ECAEC5DC24D1CA4A00F472AA /* activeChats.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = activeChats.json; sourceTree = "<group>"; };
 		ECAEC5DE24D1CBFC00F472AA /* waitingChats.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = waitingChats.json; sourceTree = "<group>"; };
 		ECAEC5E024D1E3F200F472AA /* Bundle-Decodable .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable .swift"; sourceTree = "<group>"; };
@@ -79,6 +85,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC80E11124D605240040A589 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EC80E10D24D604ED0040A589 /* MPeople.swift */,
+				EC80E10F24D6050F0040A589 /* MChat.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		ECAEC5E424D20BBE00F472AA /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +117,7 @@
 		ECB3E83E24D07C0B00B490FE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				ECB3E83D24D07BEB00B490FE /* Auth */,
 				ECAEC5E424D20BBE00F472AA /* Cell */,
 				ECB3E83A24D0667000B490FE /* ListViewController.swift */,
 				ECB3E84324D07C8D00B490FE /* PeopleViewController.swift */,
@@ -134,10 +150,11 @@
 				ECC4726724C9FE76006B800A /* SceneDelegate.swift */,
 				ECAEC5DC24D1CA4A00F472AA /* activeChats.json */,
 				ECAEC5DE24D1CBFC00F472AA /* waitingChats.json */,
+				EC80E10B24D5FBC70040A589 /* peopleNearBy.json */,
 				ECC4726E24C9FE78006B800A /* Assets.xcassets */,
 				ECC4727024C9FE78006B800A /* LaunchScreen.storyboard */,
 				ECC4727324C9FE78006B800A /* Info.plist */,
-				ECB3E83D24D07BEB00B490FE /* Auth */,
+				EC80E11124D605240040A589 /* Model */,
 				ECB3E83E24D07C0B00B490FE /* Controllers */,
 				ECEF76CE24CA3221000E39B2 /* Extensions */,
 			);
@@ -228,6 +245,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC80E10C24D5FBC70040A589 /* peopleNearBy.json in Resources */,
 				ECC4727224C9FE78006B800A /* LaunchScreen.storyboard in Resources */,
 				ECAEC5DD24D1CA4A00F472AA /* activeChats.json in Resources */,
 				ECC4726F24C9FE78006B800A /* Assets.xcassets in Resources */,
@@ -244,6 +262,7 @@
 			files = (
 				ECEF76D224CB756D000E39B2 /* StackView + Extension.swift in Sources */,
 				ECEF76CA24CA24E2000E39B2 /* UIImageView + Extension.swift in Sources */,
+				EC80E10E24D604ED0040A589 /* MPeople.swift in Sources */,
 				ECC4727A24C9FF59006B800A /* AuthViewController.swift in Sources */,
 				ECB3E84224D07C5400B490FE /* MainTabBarViewController.swift in Sources */,
 				ECAEC5E324D20BAD00F472AA /* ActiveChatCollectionViewCell.swift in Sources */,
@@ -262,6 +281,7 @@
 				EC80E10624D4D0A00040A589 /* WaitingChatsCollectionViewCell.swift in Sources */,
 				EC662C8824CDADA9009FD31E /* LogInViewController.swift in Sources */,
 				ECC4726824C9FE76006B800A /* SceneDelegate.swift in Sources */,
+				EC80E11024D6050F0040A589 /* MChat.swift in Sources */,
 				ECEF76CC24CA3121000E39B2 /* UIFont + Extension.swift in Sources */,
 				ECB3E83B24D0667000B490FE /* ListViewController.swift in Sources */,
 				ECC4727C24CA19AB006B800A /* UIButton + Extension.swift in Sources */,

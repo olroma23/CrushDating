@@ -8,23 +8,6 @@
 
 import UIKit
 
-struct MChat: Hashable, Decodable {
-    
-    var username: String
-    var userImageString: String
-    var lastMessage: String
-    var id: Int
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-    
-    static func == (lhs: MChat, rhs: MChat) -> Bool {
-        return lhs.id == rhs.id
-    }
-    
-}
-
 class ListViewController: UIViewController {
     
     let activeChats = Bundle.main.decode([MChat].self, from: "activeChats.json")
@@ -49,6 +32,8 @@ class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Crush Dating"
+        
         setupCollectionView()
         setupNavigationBar()
         
@@ -60,6 +45,7 @@ class ListViewController: UIViewController {
     
     private func setupNavigationBar() {
         navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.9725490196, blue: 1, alpha: 1)
         let searchController = UISearchController(searchResultsController: nil)
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -76,8 +62,6 @@ class ListViewController: UIViewController {
         collectionView?.register(ActiveChatCollectionViewCell.self, forCellWithReuseIdentifier: ActiveChatCollectionViewCell.reuseID)
         collectionView?.register(WaitingChatsCollectionViewCell.self, forCellWithReuseIdentifier: WaitingChatsCollectionViewCell.reuseID)
         collectionView?.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reuseID)
-        
-        
     }
     
     private func reloadData() {

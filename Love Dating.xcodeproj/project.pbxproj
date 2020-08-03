@@ -18,6 +18,7 @@
 		EC80E11024D6050F0040A589 /* MChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80E10F24D6050F0040A589 /* MChat.swift */; };
 		EC8B66C024D6F89700973C82 /* PeopleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B66BF24D6F89700973C82 /* PeopleCollectionViewCell.swift */; };
 		EC8B66C224D6FFF500973C82 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B66C124D6FFF500973C82 /* UIViewController + Extension.swift */; };
+		EC8B66C424D748C600973C82 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B66C324D748C600973C82 /* ProfileViewController.swift */; };
 		ECAEC5DD24D1CA4A00F472AA /* activeChats.json in Resources */ = {isa = PBXBuildFile; fileRef = ECAEC5DC24D1CA4A00F472AA /* activeChats.json */; };
 		ECAEC5DF24D1CBFC00F472AA /* waitingChats.json in Resources */ = {isa = PBXBuildFile; fileRef = ECAEC5DE24D1CBFC00F472AA /* waitingChats.json */; };
 		ECAEC5E124D1E3F200F472AA /* Bundle-Decodable .swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAEC5E024D1E3F200F472AA /* Bundle-Decodable .swift */; };
@@ -53,6 +54,7 @@
 		EC80E10F24D6050F0040A589 /* MChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MChat.swift; sourceTree = "<group>"; };
 		EC8B66BF24D6F89700973C82 /* PeopleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleCollectionViewCell.swift; sourceTree = "<group>"; };
 		EC8B66C124D6FFF500973C82 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
+		EC8B66C324D748C600973C82 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		ECAEC5DC24D1CA4A00F472AA /* activeChats.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = activeChats.json; sourceTree = "<group>"; };
 		ECAEC5DE24D1CBFC00F472AA /* waitingChats.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = waitingChats.json; sourceTree = "<group>"; };
 		ECAEC5E024D1E3F200F472AA /* Bundle-Decodable .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable .swift"; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				ECB3E84324D07C8D00B490FE /* PeopleViewController.swift */,
 				ECB3E84124D07C5400B490FE /* MainTabBarViewController.swift */,
 				EC80E10724D5A5160040A589 /* SectionHeader.swift */,
+				EC8B66C324D748C600973C82 /* ProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				ECB6ECD624CE1F4B0026CD73 /* AddPhotoView.swift in Sources */,
 				ECB6ECD424CE1D030026CD73 /* UIImage + Extension.swift in Sources */,
 				ECC4726624C9FE76006B800A /* AppDelegate.swift in Sources */,
+				EC8B66C424D748C600973C82 /* ProfileViewController.swift in Sources */,
 				EC8B66C024D6F89700973C82 /* PeopleCollectionViewCell.swift in Sources */,
 				ECB6ECD224CDF8F60026CD73 /* SetupProfileViewController.swift in Sources */,
 				EC80E10624D4D0A00040A589 /* WaitingChatsCollectionViewCell.swift in Sources */,

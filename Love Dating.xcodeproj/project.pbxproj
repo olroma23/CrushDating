@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC06E06D24D999F400B4336C /* ChatRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC06E06C24D999F400B4336C /* ChatRequestViewController.swift */; };
 		EC662C8824CDADA9009FD31E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC662C8724CDADA9009FD31E /* LogInViewController.swift */; };
 		EC7A7F2C24CB854D0004B5D0 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A7F2B24CB854D0004B5D0 /* SignUpViewController.swift */; };
 		EC7A7F2E24CB8C7A0004B5D0 /* UITextFIeld + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A7F2D24CB8C7A0004B5D0 /* UITextFIeld + Extension.swift */; };
@@ -19,6 +20,8 @@
 		EC8B66C024D6F89700973C82 /* PeopleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B66BF24D6F89700973C82 /* PeopleCollectionViewCell.swift */; };
 		EC8B66C224D6FFF500973C82 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B66C124D6FFF500973C82 /* UIViewController + Extension.swift */; };
 		EC8B66C424D748C600973C82 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B66C324D748C600973C82 /* ProfileViewController.swift */; };
+		EC8B66C624D8A74D00973C82 /* InsertableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B66C524D8A74D00973C82 /* InsertableTextField.swift */; };
+		EC8B66C824D9863A00973C82 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B66C724D9863A00973C82 /* UIView + Extension.swift */; };
 		ECAEC5DD24D1CA4A00F472AA /* activeChats.json in Resources */ = {isa = PBXBuildFile; fileRef = ECAEC5DC24D1CA4A00F472AA /* activeChats.json */; };
 		ECAEC5DF24D1CBFC00F472AA /* waitingChats.json in Resources */ = {isa = PBXBuildFile; fileRef = ECAEC5DE24D1CBFC00F472AA /* waitingChats.json */; };
 		ECAEC5E124D1E3F200F472AA /* Bundle-Decodable .swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAEC5E024D1E3F200F472AA /* Bundle-Decodable .swift */; };
@@ -43,6 +46,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC06E06C24D999F400B4336C /* ChatRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRequestViewController.swift; sourceTree = "<group>"; };
 		EC662C8724CDADA9009FD31E /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		EC7A7F2B24CB854D0004B5D0 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		EC7A7F2D24CB8C7A0004B5D0 /* UITextFIeld + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextFIeld + Extension.swift"; sourceTree = "<group>"; };
@@ -55,6 +59,8 @@
 		EC8B66BF24D6F89700973C82 /* PeopleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleCollectionViewCell.swift; sourceTree = "<group>"; };
 		EC8B66C124D6FFF500973C82 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		EC8B66C324D748C600973C82 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		EC8B66C524D8A74D00973C82 /* InsertableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertableTextField.swift; sourceTree = "<group>"; };
+		EC8B66C724D9863A00973C82 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 		ECAEC5DC24D1CA4A00F472AA /* activeChats.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = activeChats.json; sourceTree = "<group>"; };
 		ECAEC5DE24D1CBFC00F472AA /* waitingChats.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = waitingChats.json; sourceTree = "<group>"; };
 		ECAEC5E024D1E3F200F472AA /* Bundle-Decodable .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable .swift"; sourceTree = "<group>"; };
@@ -131,6 +137,7 @@
 				ECB3E84124D07C5400B490FE /* MainTabBarViewController.swift */,
 				EC80E10724D5A5160040A589 /* SectionHeader.swift */,
 				EC8B66C324D748C600973C82 /* ProfileViewController.swift */,
+				EC06E06C24D999F400B4336C /* ChatRequestViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -172,6 +179,7 @@
 		ECEF76CD24CA3202000E39B2 /* UIKit Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				EC8B66C724D9863A00973C82 /* UIView + Extension.swift */,
 				EC7A7F2D24CB8C7A0004B5D0 /* UITextFIeld + Extension.swift */,
 				ECC4727B24CA19AB006B800A /* UIButton + Extension.swift */,
 				ECB6ECD324CE1D030026CD73 /* UIImage + Extension.swift */,
@@ -189,6 +197,7 @@
 				ECEF76CF24CB5E05000E39B2 /* ButtonFormView.swift */,
 				EC8B66C124D6FFF500973C82 /* UIViewController + Extension.swift */,
 				EC80E10324D4A9E50040A589 /* GradientView.swift */,
+				EC8B66C524D8A74D00973C82 /* InsertableTextField.swift */,
 				ECB6ECD524CE1F4B0026CD73 /* AddPhotoView.swift */,
 				ECAEC5E024D1E3F200F472AA /* Bundle-Decodable .swift */,
 				ECEF76CD24CA3202000E39B2 /* UIKit Extensions */,
@@ -277,12 +286,15 @@
 				ECAEC5E324D20BAD00F472AA /* ActiveChatCollectionViewCell.swift in Sources */,
 				ECEF76D024CB5E05000E39B2 /* ButtonFormView.swift in Sources */,
 				EC80E10824D5A5160040A589 /* SectionHeader.swift in Sources */,
+				EC8B66C824D9863A00973C82 /* UIView + Extension.swift in Sources */,
 				ECB3E84424D07C8D00B490FE /* PeopleViewController.swift in Sources */,
 				EC7A7F2C24CB854D0004B5D0 /* SignUpViewController.swift in Sources */,
 				EC8B66C224D6FFF500973C82 /* UIViewController + Extension.swift in Sources */,
 				ECEF76C824CA2048000E39B2 /* UILabel + Extension.swift in Sources */,
 				EC7A7F2E24CB8C7A0004B5D0 /* UITextFIeld + Extension.swift in Sources */,
 				ECAEC5E124D1E3F200F472AA /* Bundle-Decodable .swift in Sources */,
+				EC06E06D24D999F400B4336C /* ChatRequestViewController.swift in Sources */,
+				EC8B66C624D8A74D00973C82 /* InsertableTextField.swift in Sources */,
 				EC80E10424D4A9E50040A589 /* GradientView.swift in Sources */,
 				ECB6ECD624CE1F4B0026CD73 /* AddPhotoView.swift in Sources */,
 				ECB6ECD424CE1D030026CD73 /* UIImage + Extension.swift in Sources */,

@@ -13,7 +13,7 @@ class ProfileViewController: UIViewController {
     let containerView = UIView()
     let imageView = UIImageView(image: #imageLiteral(resourceName: "human4"), contentMode: .scaleAspectFill)
     let nameLabel = UILabel(text: "Ella Watson", font: UIFont.boldSystemFont(ofSize: 20))
-    let aboutLabel = UILabel(text: "Waiting for you ❤️", font: UIFont.systemFont(ofSize: 16, weight: .semibold))
+    let aboutLabel = UILabel(text: "Waiting for you ❤️", font: UIFont.systemFont(ofSize: 16, weight: .medium))
     let myTextField = InsertableTextField()
     
     override func viewDidLoad() {
@@ -22,6 +22,8 @@ class ProfileViewController: UIViewController {
         customizeElements()
         setupConstraints()
         aboutLabel.textColor = .systemGray
+        
+        myTextField.applyStyles(style: .message, placeholder: "Write something here..")
         
     }
     

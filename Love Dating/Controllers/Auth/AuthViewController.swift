@@ -10,6 +10,9 @@ import UIKit
 
 class AuthViewController: UIViewController {
     
+    let signUpVC = SignUpViewController()
+    let loginVC = LogInViewController()
+    
     let logoImageView = UIImageView(image: #imageLiteral(resourceName: "crushLogo"), contentMode: .scaleAspectFit)
     
     let googleLabel = UILabel(text: "Get started with:")
@@ -18,7 +21,7 @@ class AuthViewController: UIViewController {
     
     let googleButton = UIButton(title: "Google", titleColor: .black, bgc: .white, isShadow: true)
     let emailButton = UIButton(title: "Email", titleColor: .white, bgc: #colorLiteral(red: 0.1999762356, green: 0.200016588, blue: 0.1999709308, alpha: 1), isShadow: false)
-    let loginButton = UIButton(title: "Login", titleColor: .systemPink, bgc: .white, isShadow: true)
+    let loginButton = UIButton(title: "Log in", titleColor: .systemPink, bgc: .white, isShadow: true)
     
     override func viewDidLoad() {
         
@@ -29,8 +32,32 @@ class AuthViewController: UIViewController {
         view.backgroundColor = .white
         setupConstraints()
         
+        emailButton.addTarget(self, action: #selector(emailButtonTapped), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        
+        
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//        self.navigationController?.navigationBar.shadowImage = UIImage()
+//        self.navigationController?.navigationBar.isTranslucent = true
+//        self.navigationController?.view.backgroundColor = .clear
+       
+        
         // Do any additional setup after loading the view.
     }
+    
+    
+    @objc private func emailButtonTapped() {
+        print(#function)
+        self.navigationController?.pushViewController(signUpVC, animated: true)
+        
+    }
+    
+    @objc private func loginButtonTapped() {
+        print(#function)
+        self.navigationController?.pushViewController(loginVC, animated: true)
+    }
+    
+    
 }
 
 

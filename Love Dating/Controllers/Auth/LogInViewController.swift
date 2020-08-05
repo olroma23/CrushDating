@@ -10,18 +10,18 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
-    let welcomeLabel = UILabel(text: "LOG IN", font: .avenir26())
-    let googleLabel = UILabel(text: "Login with")
+    let logoImageView = UIImageView(image: #imageLiteral(resourceName: "crushLogo"), contentMode: .scaleAspectFit)
+    let googleLabel = UILabel(text: "Login with:")
     let orLabel = UILabel(text: "or")
-    let emailLabel = UILabel(text: "Email")
-    let passwordLabel = UILabel(text: "Password")
+    let emailLabel = UILabel(text: "")
+    let passwordLabel = UILabel(text: "")
     let signUpLabel = UILabel(text: "Need an account?")
     
-    let emailTF = UITextField(style: true)
-    let passwordTF = UITextField(style: true)
+    let emailTF = InsertableTextField()
+    let passwordTF = InsertableTextField()
     
     let googleButton = UIButton(title: "Google", titleColor: .black, bgc: .white, isShadow: true)
-    let loginButton = UIButton(title: "Login", titleColor: .white, bgc: #colorLiteral(red: 0.1999762356, green: 0.200016588, blue: 0.1999709308, alpha: 1), isShadow: true, cornerRadius: 4)
+    let loginButton = UIButton(title: "Log in", titleColor: .white, bgc: #colorLiteral(red: 0.1999762356, green: 0.200016588, blue: 0.1999709308, alpha: 1), isShadow: true, cornerRadius: 4)
     let signUpButton = UIButton(type: .system)
     
     
@@ -36,15 +36,40 @@ class LogInViewController: UIViewController {
         signUpButton.setTitleColor(.systemPink, for: .normal)
         signUpButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         
-     
+        
         setUpConstraints()
         
+        signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         
+        emailTF.applyStyles(style: .auth, placeholder: "Email")
+        passwordTF.applyStyles(style: .password, placeholder: "Password")
+        
+        title = "Log in"
         
         // Do any additional setup after loading the view.
     }
     
- 
+    
+    @objc private func signUpButtonTapped() {
+        print(#function)
+        
+    }
+    
+    @objc private func loginButtonTapped() {
+        print(#function)
+        AuthService.shared.login(email: emailTF.text, password: passwordTF.text) { (result) in
+            switch result {
+            case .success(let user):
+                self.showAlert(title: "Success", message: "You're logged in!")
+            case .failure(let error):
+                self.showAlert(title: "Error", message: "\(error.localizedDescription)")
+                
+            }
+        }
+    }
+    
+    
     
     
 }
@@ -56,29 +81,38 @@ class LogInViewController: UIViewController {
 extension LogInViewController {
     
     private func setUpConstraints() {
-        view.addSubview(welcomeLabel)
-        welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([welcomeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 130),
-                                     welcomeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)])
+        
+        view.addSubview(logoImageView)
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+                                     logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                                     logoImageView.widthAnchor.constraint(equalToConstant: 150)
+        ])
+        
+        
         
         let googleStackView = UIStackView(arrangedSubviews: [googleLabel, googleButton], axis: .vertical, spacing: 20)
-        let emailStackView = UIStackView(arrangedSubviews: [emailLabel, emailTF], axis: .vertical, spacing: 0)
-        let passwordStackView = UIStackView(arrangedSubviews: [passwordLabel, passwordTF], axis: .vertical, spacing: 0)
+        let authStackView = UIStackView(arrangedSubviews: [emailTF, passwordTF], axis: .vertical, spacing: 20)
         
-        let stackView = UIStackView(arrangedSubviews: [googleStackView, orLabel, emailStackView, passwordStackView, loginButton], axis: .vertical, spacing: 40)
+        let stackView = UIStackView(arrangedSubviews: [googleStackView, orLabel, authStackView, loginButton], axis: .vertical, spacing: 40)
         let buttonStackView = UIStackView(arrangedSubviews: [signUpLabel, signUpButton], axis: .horizontal, spacing: 20)
-                view.addSubview(stackView)
+        view.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([ stackView.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 120),
+        NSLayoutConstraint.activate([ stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 90),
                                       stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
                                       stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
         ])
         
         buttonStackView.translatesAutoresizingMaskIntoConstraints = false
-                view.addSubview(buttonStackView)
+        view.addSubview(buttonStackView)
         
         NSLayoutConstraint.activate([ buttonStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
                                       buttonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            emailTF.heightAnchor.constraint(equalToConstant: 40),
+            passwordTF.heightAnchor.constraint(equalToConstant: 40),
         ])
         
     }

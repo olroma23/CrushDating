@@ -35,6 +35,9 @@ class AuthViewController: UIViewController {
         emailButton.addTarget(self, action: #selector(emailButtonTapped), for: .touchUpInside)
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         
+        signUpVC.delegate = self
+        loginVC.delegate = self
+        
         
 //        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
 //        self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -92,6 +95,19 @@ extension AuthViewController {
     
 }
 
+ 
+extension AuthViewController: AuthNavigationDelegate {
+    
+    func toLoginVC() {
+        self.navigationController?.pushViewController(loginVC, animated: true)
+    }
+    
+    func toSignUpVC() {
+        self.navigationController?.pushViewController(signUpVC, animated: true)
+    }
+    
+    
+}
 
 
 // MARK: SwiftUI configuration

@@ -10,6 +10,8 @@ import UIKit
 
 class SignUpViewController: UIViewController {
     
+    lazy var loginViewController = LogInViewController()
+        
     let logoImageView = UIImageView(image: #imageLiteral(resourceName: "crushLogo"), contentMode: .scaleAspectFit)
     let emailLabel = UILabel(text: "")
     let passwordLabel = UILabel(text: "")
@@ -22,6 +24,8 @@ class SignUpViewController: UIViewController {
     
     let signUpButton = UIButton(title: "Sign up", titleColor: .white, bgc: #colorLiteral(red: 0.1999762356, green: 0.200016588, blue: 0.1999709308, alpha: 1), isShadow: false, cornerRadius: 4)
     let loginButton = UIButton(type: .system)
+    
+    weak var delegate: AuthNavigationDelegate?
     
     override func viewDidLoad() {
         
@@ -39,25 +43,27 @@ class SignUpViewController: UIViewController {
         signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
         
         self.title = "Sign up"
+        
         emailTF.applyStyles(style: .auth, placeholder: "Email")
         passwordTF.applyStyles(style: .password, placeholder: "Password")
         confirmPasswordTF.applyStyles(style: .confirmPassword, placeholder: "Confirm password")
-        
+                
     }
     
     @objc private func loginButtonTapped() {
-        print(#function)
-        
+        self.navigationController?.popToRootViewController(animated: true)
+        self.delegate?.toLoginVC()
     }
     
     @objc private func signUpButtonTapped() {
-           print(#function)
         AuthService.shared.register(email: emailTF.text,
                                     password: passwordTF.text,
                                     confirmPassword: confirmPasswordTF.text) { (result) in
                                         switch result {
                                         case .success(let user):
-                                            self.showAlert(title: "Success", message: "You're registered!")
+                                            self.showAlert(title: "Success", message: "You're registered!") {
+                                                self.navigationController?.pushViewController(SetupProfileViewController(currentUser: user), animated: true)
+                                            }
                                         case .failure(let error):
                                             self.showAlert(title: "Error", message: "\(error.localizedDescription)")
                                         }
@@ -116,9 +122,11 @@ extension SignUpViewController {
 
 extension UIViewController {
     
-    func showAlert(title: String, message: String) {
+    func showAlert(title: String, message: String, completion: @escaping () -> () = { }) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let OkAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        let OkAction = UIAlertAction(title: "Ok", style: .default) { (_) in
+           completion()
+        }
         alertController.addAction(OkAction)
         present(alertController, animated: true)
     }

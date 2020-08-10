@@ -10,6 +10,8 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
+    lazy var signUpVC = SignUpViewController()
+    
     let logoImageView = UIImageView(image: #imageLiteral(resourceName: "crushLogo"), contentMode: .scaleAspectFit)
     let googleLabel = UILabel(text: "Login with:")
     let orLabel = UILabel(text: "or")
@@ -23,6 +25,8 @@ class LogInViewController: UIViewController {
     let googleButton = UIButton(title: "Google", titleColor: .black, bgc: .white, isShadow: true)
     let loginButton = UIButton(title: "Log in", titleColor: .white, bgc: #colorLiteral(red: 0.1999762356, green: 0.200016588, blue: 0.1999709308, alpha: 1), isShadow: true, cornerRadius: 4)
     let signUpButton = UIButton(type: .system)
+    
+    weak var delegate: AuthNavigationDelegate?
     
     
     override func viewDidLoad() {
@@ -52,26 +56,32 @@ class LogInViewController: UIViewController {
     
     
     @objc private func signUpButtonTapped() {
-        print(#function)
-        
+        self.navigationController?.popToRootViewController(animated: true)
+        self.delegate?.toSignUpVC()
     }
     
     @objc private func loginButtonTapped() {
-        print(#function)
         AuthService.shared.login(email: emailTF.text, password: passwordTF.text) { (result) in
             switch result {
             case .success(let user):
-                self.showAlert(title: "Success", message: "You're logged in!")
+                self.showAlert(title: "Success", message: "You're logged in!") {
+                    FirestoreService.shared.getUserData(user: user) { (result) in
+                        switch result {
+                        case .success(let mPeople):
+                            let mainTabBarVC = MainTabBarViewController(currentUser: mPeople)
+                            mainTabBarVC.modalPresentationStyle = .fullScreen
+                            self.present(mainTabBarVC, animated: true)
+                        case .failure(let error):
+                            self.navigationController?.pushViewController(SetupProfileViewController(currentUser: user), animated: true)
+                        }
+                    }
+                }
             case .failure(let error):
                 self.showAlert(title: "Error", message: "\(error.localizedDescription)")
                 
             }
         }
     }
-    
-    
-    
-    
 }
 
 
@@ -88,8 +98,6 @@ extension LogInViewController {
                                      logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                                      logoImageView.widthAnchor.constraint(equalToConstant: 150)
         ])
-        
-        
         
         let googleStackView = UIStackView(arrangedSubviews: [googleLabel, googleButton], axis: .vertical, spacing: 20)
         let authStackView = UIStackView(arrangedSubviews: [emailTF, passwordTF], axis: .vertical, spacing: 20)

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class PeopleViewController: UIViewController {
     
@@ -21,9 +22,9 @@ class PeopleViewController: UIViewController {
         }
     }
     
-    let users = Bundle.main.decode([MPeople].self, from: "peopleNearBy.json")
+    let users = Bundle.main.decode([SampleModel].self, from: "peopleNearBy.json")
     var collectionView: UICollectionView?
-    var dataSource: UICollectionViewDiffableDataSource<Section, MPeople>?
+    var dataSource: UICollectionViewDiffableDataSource<Section, SampleModel>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,23 @@ class PeopleViewController: UIViewController {
         createDataSource()
         reloadData(with: nil)
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log out", style: .plain, target: self, action: #selector(logOut))
+        
+    }
+    
+    @objc private func logOut() {
+        let ac = UIAlertController(title: nil, message: "Are you sure you want to sign out?", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        ac.addAction(UIAlertAction(title: "Log out", style: .destructive, handler: { (_) in
+            do {
+                try Auth.auth().signOut()
+                UIApplication.shared.keyWindow?.rootViewController = AuthViewController()
+            }
+            catch {
+                print("Error with signing out: \(error.localizedDescription)")
+            }
+        }))
+        present(ac, animated: true)
     }
     
     private func setupCollectionView() {
@@ -62,7 +80,7 @@ class PeopleViewController: UIViewController {
             user.contains(filter: searchText)
         }
     
-        var snapshot = NSDiffableDataSourceSnapshot<Section, MPeople>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, SampleModel>()
         snapshot.appendSections([.users])
         snapshot.appendItems(filtered, toSection: .users)
         dataSource?.apply(snapshot, animatingDifferences: true)
@@ -128,7 +146,7 @@ extension PeopleViewController {
 extension PeopleViewController {
     
     private func createDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, MPeople>(collectionView: collectionView!, cellProvider: { (collectionView, indexPath, catalog) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, SampleModel>(collectionView: collectionView!, cellProvider: { (collectionView, indexPath, catalog) -> UICollectionViewCell? in
             guard let section = Section(rawValue: indexPath.section) else { fatalError("Unknown section") }
             
             switch section {

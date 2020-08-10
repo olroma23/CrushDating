@@ -41,7 +41,7 @@ class PeopleCollectionViewCell: UICollectionViewCell, CellConfiguration {
     
     func configure<U>(with value: U) where U : Hashable {
         let value = value as! MPeople
-        friendImageView.image = UIImage(named: value.userImageString)
+        friendImageView.image = UIImage(named: value.avatarImage)
         friendName.text = value.username
         friendName.font = UIFont.boldSystemFont(ofSize: 15)
     }

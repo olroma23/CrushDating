@@ -9,17 +9,15 @@
 import UIKit
 
 enum Style {
-    case message, auth, password, confirmPassword
+    case message, auth, password, confirmPassword, user
 }
 
 class InsertableTextField: UITextField {
     
     override init(frame: CGRect) {
-        
         super.init(frame: frame)
-        
     }
-    
+        
     func applyStyles(style: Style, placeholder: String) {
         
         self.placeholder = placeholder
@@ -54,6 +52,10 @@ class InsertableTextField: UITextField {
               self.backgroundColor = .systemGray6
                       image = UIImage(systemName: "arrow.up", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))?.withTintColor(.systemPink, renderingMode: .alwaysOriginal)
                       imageView = UIImageView(image: image)
+        case .user:
+                 self.backgroundColor = .systemGray6
+                             image = UIImage(systemName: "person", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))?.withTintColor(.systemPink, renderingMode: .alwaysOriginal)
+                             imageView = UIImageView(image: image)
         }
         
         self.leftView = imageView
@@ -65,7 +67,6 @@ class InsertableTextField: UITextField {
         self.rightView = button
         self.rightView?.frame = CGRect(x: 0, y: 0, width: 15, height: 15)
         self.rightViewMode = .always
-        
         
     }
     

@@ -8,11 +8,6 @@
 
 import UIKit
 
-protocol CellConfiguration {
-    static var reuseID: String { get }
-    func configure<U: Hashable>(with value: U)
-}
-
 class ActiveChatCollectionViewCell: UICollectionViewCell, CellConfiguration {
     
     static var reuseID: String = "ActiveChatCollectionViewCell"

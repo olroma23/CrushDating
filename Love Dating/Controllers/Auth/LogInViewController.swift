@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 class LogInViewController: UIViewController {
     
@@ -40,11 +41,11 @@ class LogInViewController: UIViewController {
         signUpButton.setTitleColor(.systemPink, for: .normal)
         signUpButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         
-        
         setUpConstraints()
         
         signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        googleButton.addTarget(self, action: #selector(googleButtonTapped), for: .touchUpInside)
         
         emailTF.applyStyles(style: .auth, placeholder: "Email")
         passwordTF.applyStyles(style: .password, placeholder: "Password")
@@ -58,6 +59,12 @@ class LogInViewController: UIViewController {
     @objc private func signUpButtonTapped() {
         self.navigationController?.popToRootViewController(animated: true)
         self.delegate?.toSignUpVC()
+    }
+    
+    @objc private func googleButtonTapped() {
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance().signIn()
+        
     }
     
     @objc private func loginButtonTapped() {

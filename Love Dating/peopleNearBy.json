@@ -1,57 +1,57 @@
 [
     {
         "username": "Jane1",
-        "avatarImage": "human1",
+        "userImageString": "human1",
         "id": 1
     },
     {
         "username": "Emma1",
-        "avatarImage": "human2",
+        "userImageString": "human2",
         "id": 2
     },
     {
         "username": "Ella1",
-        "avatarImage": "human3",
+        "userImageString": "human3",
         "id": 3
     },
     {
         "username": "Viktor Yanukovich1",
-        "avatarImage": "human4",
+        "userImageString": "human4",
         "id": 4
     },
     {
         "username": "Viktor Yanukovich",
-        "avatarImage": "human7",
+        "userImageString": "human7",
         "id": 5
     },
     {
         "username": "Zhenia",
-        "avatarImage": "human5",
+        "userImageString": "human5",
         "id": 6
     },
     {
         "username": "Jane1",
-        "avatarImage": "human1",
+        "userImageString": "human1",
         "id": 7
     },
     {
         "username": "Emma1",
-        "avatarImage": "human2",
+        "userImageString": "human2",
         "id": 8
     },
     {
         "username": "Ella1",
-        "avatarImage": "human3",
+        "userImageString": "human3",
         "id": 9
     },
     {
         "username": "Viktor Yanukovich1",
-        "avatarImage": "human4",
+        "userImageString": "human4",
         "id": 10
     },
     {
         "username": "Viktor Yanukovich",
-        "avatarImage": "human7",
+        "userImageString": "human7",
         "id": 11
     }
 ]

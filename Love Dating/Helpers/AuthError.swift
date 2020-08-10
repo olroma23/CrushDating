@@ -16,7 +16,7 @@ enum AuthError {
 extension AuthError: LocalizedError {
     var errorDescription: String? {
         switch self {
-          case .notFilled:
+        case .notFilled :
             return NSLocalizedString("Please, fill all fields", comment: "")
         case .invalidEmail:
             return NSLocalizedString("This email is invalid", comment: "")

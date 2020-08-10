@@ -12,7 +12,7 @@ class PeopleCollectionViewCell: UICollectionViewCell, CellConfiguration {
     
     static var reuseID: String = "PeopleCollectionViewCell"
     let friendImageView = UIImageView()
-    var friendName = UILabel(text: "Userergergergergergergregerg")
+    var friendName = UILabel(text: "User")
     let containerView = UIView()
     
     override init(frame: CGRect) {
@@ -40,8 +40,8 @@ class PeopleCollectionViewCell: UICollectionViewCell, CellConfiguration {
     }
     
     func configure<U>(with value: U) where U : Hashable {
-        let value = value as! MPeople
-        friendImageView.image = UIImage(named: value.avatarImage)
+        let value = value as! SampleModel
+        friendImageView.image = UIImage(named: value.userImageString)
         friendName.text = value.username
         friendName.font = UIFont.boldSystemFont(ofSize: 15)
     }

@@ -292,6 +292,7 @@
 				ECC4725F24C9FE76006B800A /* Frameworks */,
 				ECC4726024C9FE76006B800A /* Resources */,
 				2531B4FF750609BCDAFD36FB /* [CP] Embed Pods Frameworks */,
+				4AC80CE8445BA8CB2C4C8B69 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -367,6 +368,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Love Dating/Pods-Love Dating-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4AC80CE8445BA8CB2C4C8B69 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Love Dating/Pods-Love Dating-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Love Dating/Pods-Love Dating-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Love Dating/Pods-Love Dating-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7346EE99D9DFCEB0747A95E8 /* [CP] Check Pods Manifest.lock */ = {

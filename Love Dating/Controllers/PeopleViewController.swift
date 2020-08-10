@@ -25,6 +25,17 @@ class PeopleViewController: UIViewController {
     let users = Bundle.main.decode([SampleModel].self, from: "peopleNearBy.json")
     var collectionView: UICollectionView?
     var dataSource: UICollectionViewDiffableDataSource<Section, SampleModel>?
+    private let currentUser: MPeople
+    
+    init(currentUser: MPeople) {
+        self.currentUser = currentUser
+        super.init(nibName: nil, bundle: nil)
+        self.title = currentUser.username
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +56,12 @@ class PeopleViewController: UIViewController {
         ac.addAction(UIAlertAction(title: "Log out", style: .destructive, handler: { (_) in
             do {
                 try Auth.auth().signOut()
-                UIApplication.shared.keyWindow?.rootViewController = AuthViewController()
+                self.view.window!.rootViewController?.dismiss(animated: true, completion: {
+                    let navVC = UINavigationController(rootViewController: AuthViewController())
+                    navVC.modalPresentationStyle = .fullScreen
+                    self.present(navVC, animated: true)
+                })
+
             }
             catch {
                 print("Error with signing out: \(error.localizedDescription)")

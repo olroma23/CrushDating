@@ -28,8 +28,8 @@ class MainTabBarViewController: UITabBarController {
         tabBar.tintColor = .systemPink
         tabBar.shadowImage = UIImage()
         
-        let listViewController = ListViewController()
-        let peopleViewController = PeopleViewController()
+        let listViewController = ListViewController(currentUser: currentUser)
+        let peopleViewController = PeopleViewController(currentUser: currentUser)
         
         let boldConfiguration = UIImage.SymbolConfiguration(weight: .medium)
         let convImage = UIImage(systemName: "bubble.left.and.bubble.right", withConfiguration: boldConfiguration)!

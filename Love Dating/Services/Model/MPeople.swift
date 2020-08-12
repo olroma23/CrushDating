@@ -54,6 +54,23 @@ struct MPeople: Hashable, Decodable {
         self.id = uid
     }
     
+    init?(document: QueryDocumentSnapshot) {
+        let data = document.data() 
+        guard let username = data["username"] as? String else { return nil }
+        guard let email = data["email"] as? String else { return nil }
+        guard let avatarImage = data["avatarImage"] as? String else { return nil }
+        guard let description = data["description"] as? String else { return nil }
+        guard let sex = data["sex"] as? String else { return nil }
+        guard let uid = data["uid"] as? String else { return nil }
+        
+        self.username = username
+        self.email = email
+        self.avatarImage = avatarImage
+        self.description = description
+        self.sex = sex
+        self.id = uid
+    }
+    
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }

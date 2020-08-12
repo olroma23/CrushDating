@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class PeopleCollectionViewCell: UICollectionViewCell, CellConfiguration {
     
@@ -35,15 +36,20 @@ class PeopleCollectionViewCell: UICollectionViewCell, CellConfiguration {
         containerView.clipsToBounds = true
     }
     
+    override func prepareForReuse() {
+        friendImageView.image = nil
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     func configure<U>(with value: U) where U : Hashable {
-        let value = value as! SampleModel
-        friendImageView.image = UIImage(named: value.userImageString)
+        let value = value as! MPeople
         friendName.text = value.username
         friendName.font = UIFont.boldSystemFont(ofSize: 15)
+        guard let url = URL(string: value.avatarImage) else { return }
+        friendImageView.sd_setImage(with: url, completed: nil)
     }
     
     private func setupConstraints() {

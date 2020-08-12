@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class PeopleViewController: UIViewController {
     
@@ -22,16 +23,23 @@ class PeopleViewController: UIViewController {
         }
     }
     
-    let users = Bundle.main.decode([SampleModel].self, from: "peopleNearBy.json")
+//    let users = Bundle.main.decode([SampleModel].self, from: "peopleNearBy.json")
+    var users = [MPeople]()
     var collectionView: UICollectionView?
-    var dataSource: UICollectionViewDiffableDataSource<Section, SampleModel>?
+    var dataSource: UICollectionViewDiffableDataSource<Section, MPeople>?
     private let currentUser: MPeople
+    private var usersListeners: ListenerRegistration?
     
     init(currentUser: MPeople) {
         self.currentUser = currentUser
         super.init(nibName: nil, bundle: nil)
         self.title = currentUser.username
     }
+    
+    deinit {
+        usersListeners?.remove()
+    }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -44,10 +52,18 @@ class PeopleViewController: UIViewController {
         
         setupCollectionView()
         createDataSource()
-        reloadData(with: nil)
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log out", style: .plain, target: self, action: #selector(logOut))
         
+        usersListeners = ListenerService.shared.usersObserve(users: users, completion: { (result) in
+            switch result {
+            case .success(let users):
+                self.users = users
+                self.reloadData(with: nil)
+            case .failure(let error):
+                self.showAlert(title: "Error", message: error.localizedDescription)
+            }
+        })
     }
     
     @objc private func logOut() {
@@ -96,7 +112,7 @@ class PeopleViewController: UIViewController {
             user.contains(filter: searchText)
         }
     
-        var snapshot = NSDiffableDataSourceSnapshot<Section, SampleModel>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, MPeople>()
         snapshot.appendSections([.users])
         snapshot.appendItems(filtered, toSection: .users)
         dataSource?.apply(snapshot, animatingDifferences: true)
@@ -138,7 +154,7 @@ extension PeopleViewController {
         
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 15
-        section.contentInsets = NSDirectionalEdgeInsets.init(top: 16, leading: 20, bottom: 0 , trailing: 20)
+        section.contentInsets = NSDirectionalEdgeInsets.init(top: 16, leading: 20, bottom: 20 , trailing: 20)
         
         let sectionHeader = createSectionHeader()
         section.boundarySupplementaryItems = [sectionHeader]
@@ -162,7 +178,7 @@ extension PeopleViewController {
 extension PeopleViewController {
     
     private func createDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, SampleModel>(collectionView: collectionView!, cellProvider: { (collectionView, indexPath, catalog) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, MPeople>(collectionView: collectionView!, cellProvider: { (collectionView, indexPath, catalog) -> UICollectionViewCell? in
             guard let section = Section(rawValue: indexPath.section) else { fatalError("Unknown section") }
             
             switch section {

@@ -79,7 +79,7 @@ extension AuthViewController: GIDSignInDelegate {
                             mainTabBar.modalPresentationStyle = .fullScreen
                             self.present(mainTabBar, animated: true)
                         }
-                            case .failure(let error):
+                            case .failure(_):
                             self.showAlert(title: "", message: "Please, set up your profile") {
                                 self.navigationController?.pushViewController(SetupProfileViewController(currentUser: user), animated: true)
                             }

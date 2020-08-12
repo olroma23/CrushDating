@@ -55,31 +55,57 @@ class SetupProfileViewController: UIViewController {
         
         goToChats.addTarget(self, action: #selector(goToChatsPressed), for: .touchUpInside)
         
+        fullImageView.plusButton.addTarget(self, action: #selector(addButtonPressed), for: .touchUpInside)
+        
         // Do any additional setup after loading the view.
     }
     
+    @objc func addButtonPressed() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .photoLibrary
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
     @objc func goToChatsPressed() {
-        
-        FirestoreService.shared.saveProfileWith(id: currentUser.uid,
-                                                email: currentUser.email!,
-                                                username: nameTF.text,
-                                                avatarImage: "nil",
-                                                description: aboutMeTF.text,
-                                                sex: sexSwitcher.titleForSegment(at: sexSwitcher.selectedSegmentIndex)) { (result) in
-                                                    switch result {
-                                                    case .success(let user):
-                                                        let mainTabBarVC = MainTabBarViewController(currentUser: user)
-                                                        mainTabBarVC.modalPresentationStyle = .fullScreen
-                                                        self.present(mainTabBarVC, animated: true)
-                                                    case .failure(let error):
-                                                        self.showAlert(title: "Error!", message: error.localizedDescription)
-                                                    }
+        let activityIndicator = self.goToChats.addActivityIndicator(color: .white)
+        activityIndicator.startAnimating()
+        FirestoreService.shared
+            .saveProfileWith(id: currentUser.uid,
+                             email: currentUser.email!,
+                             username: nameTF.text,
+                             avatarImage: fullImageView.profileImageView.image,
+                             description: aboutMeTF.text,
+                             sex: sexSwitcher.titleForSegment(at: sexSwitcher.selectedSegmentIndex)) { (result) in
+                                switch result {
+                                case .success(let user):
+                                    let mainTabBarVC = MainTabBarViewController(currentUser: user)
+                                    mainTabBarVC.modalPresentationStyle = .fullScreen
+                                    self.present(mainTabBarVC, animated: true)
+                                case .failure(let error):
+                                    self.showAlert(title: "Error!", message: error.localizedDescription) {
+                                    self.goToChats.stopActivityIndicator(activityIndicator: activityIndicator)
+                                        
+                                    }
+                                }
         }
         
     }
     
     
 }
+
+// MARK: Image Picker Delegate
+
+
+extension SetupProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
+        fullImageView.profileImageView.image = image
+    }
+}
+
 
 // MARK: Setup constraints
 

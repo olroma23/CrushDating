@@ -11,6 +11,7 @@
 		EC06E06D24D999F400B4336C /* ChatRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC06E06C24D999F400B4336C /* ChatRequestViewController.swift */; };
 		EC06E06F24D9CB1600B4336C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC06E06E24D9CB1600B4336C /* GoogleService-Info.plist */; };
 		EC6429D024E1B0D600F7AEB5 /* SampleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6429CF24E1B0D600F7AEB5 /* SampleModel.swift */; };
+		EC6429D224E30C7700F7AEB5 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6429D124E30C7700F7AEB5 /* StorageService.swift */; };
 		EC662C8824CDADA9009FD31E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC662C8724CDADA9009FD31E /* LogInViewController.swift */; };
 		EC7A7F2C24CB854D0004B5D0 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A7F2B24CB854D0004B5D0 /* SignUpViewController.swift */; };
 		EC7A7F2E24CB8C7A0004B5D0 /* UITextFIeld + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7A7F2D24CB8C7A0004B5D0 /* UITextFIeld + Extension.swift */; };
@@ -62,6 +63,7 @@
 		EC06E06C24D999F400B4336C /* ChatRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRequestViewController.swift; sourceTree = "<group>"; };
 		EC06E06E24D9CB1600B4336C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EC6429CF24E1B0D600F7AEB5 /* SampleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleModel.swift; sourceTree = "<group>"; };
+		EC6429D124E30C7700F7AEB5 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		EC662C8724CDADA9009FD31E /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		EC7A7F2B24CB854D0004B5D0 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		EC7A7F2D24CB8C7A0004B5D0 /* UITextFIeld + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextFIeld + Extension.swift"; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				EC80E11124D605240040A589 /* Model */,
 				EC96B65524DA952E0031CC05 /* AuthService.swift */,
 				EC940B3924DEA03F003F2C87 /* FirestoreService.swift */,
+				EC6429D124E30C7700F7AEB5 /* StorageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				ECEF76CA24CA24E2000E39B2 /* UIImageView + Extension.swift in Sources */,
 				EC940B3C24DF1F99003F2C87 /* UserError.swift in Sources */,
 				EC80E10E24D604ED0040A589 /* MPeople.swift in Sources */,
+				EC6429D224E30C7700F7AEB5 /* StorageService.swift in Sources */,
 				ECC4727A24C9FF59006B800A /* AuthViewController.swift in Sources */,
 				ECB3E84224D07C5400B490FE /* MainTabBarViewController.swift in Sources */,
 				ECAEC5E324D20BAD00F472AA /* ActiveChatCollectionViewCell.swift in Sources */,

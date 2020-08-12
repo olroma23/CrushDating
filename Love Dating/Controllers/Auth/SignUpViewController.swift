@@ -11,7 +11,7 @@ import UIKit
 class SignUpViewController: UIViewController {
     
     lazy var loginViewController = LogInViewController()
-        
+    
     let logoImageView = UIImageView(image: #imageLiteral(resourceName: "crushLogo"), contentMode: .scaleAspectFit)
     let emailLabel = UILabel(text: "")
     let passwordLabel = UILabel(text: "")
@@ -47,7 +47,7 @@ class SignUpViewController: UIViewController {
         emailTF.applyStyles(style: .auth, placeholder: "Email")
         passwordTF.applyStyles(style: .password, placeholder: "Password")
         confirmPasswordTF.applyStyles(style: .confirmPassword, placeholder: "Confirm password")
-                
+        
     }
     
     @objc private func loginButtonTapped() {
@@ -56,6 +56,8 @@ class SignUpViewController: UIViewController {
     }
     
     @objc private func signUpButtonTapped() {
+        let activityIndicator = self.signUpButton.addActivityIndicator(color: .white)
+        activityIndicator.startAnimating()
         AuthService.shared.register(email: emailTF.text,
                                     password: passwordTF.text,
                                     confirmPassword: confirmPasswordTF.text) { (result) in
@@ -63,12 +65,16 @@ class SignUpViewController: UIViewController {
                                         case .success(let user):
                                             self.showAlert(title: "Success", message: "You're registered!") {
                                                 self.navigationController?.pushViewController(SetupProfileViewController(currentUser: user), animated: true)
+                                                self.signUpButton.stopActivityIndicator(activityIndicator: activityIndicator)
                                             }
+                                            
                                         case .failure(let error):
-                                            self.showAlert(title: "Error", message: "\(error.localizedDescription)")
+                                            self.showAlert(title: "Error", message: "\(error.localizedDescription)") {
+                                            self.signUpButton.stopActivityIndicator(activityIndicator: activityIndicator)
+                                            }
                                         }
         }
-       }
+    }
     
 }
 
@@ -110,7 +116,7 @@ extension SignUpViewController {
             emailTF.heightAnchor.constraint(equalToConstant: 40),
             passwordTF.heightAnchor.constraint(equalToConstant: 40),
             confirmPasswordTF.heightAnchor.constraint(equalToConstant: 40)
-               ])
+        ])
         
         
     }
@@ -125,7 +131,7 @@ extension UIViewController {
     func showAlert(title: String, message: String, completion: @escaping () -> () = { }) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let OkAction = UIAlertAction(title: "Ok", style: .default) { (_) in
-           completion()
+            completion()
         }
         alertController.addAction(OkAction)
         present(alertController, animated: true)

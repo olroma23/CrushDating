@@ -9,14 +9,18 @@
 import Foundation
 import UIKit
 
-extension UIButton {
+enum ActivityIndicatorState {
+    case start, stop
+}
 
+extension UIButton {
+    
     convenience init(title: String,
                      titleColor: UIColor,
                      bgc: UIColor,
                      isShadow: Bool,
                      cornerRadius: CGFloat = 6
-                     ) {
+    ) {
         
         self.init(type: .system)
         
@@ -43,6 +47,30 @@ extension UIButton {
         googleLogo.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 24).isActive = true
         googleLogo.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         googleLogo.image = googleLogo.image?.resizeImage(20, opaque: false)
+    }
+    
+    func addActivityIndicator(color: UIColor) -> UIActivityIndicatorView {
+        
+        self.setTitleColor(self.titleLabel?.textColor.withAlphaComponent(0), for: .normal)
+        let activityIndicator = UIActivityIndicatorView()
+        self.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                                     activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+        ])
+        
+        activityIndicator.style = .medium
+        activityIndicator.color = .white
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+        
+        return activityIndicator
+    }
+    
+    func stopActivityIndicator(activityIndicator: UIActivityIndicatorView) {
+        
+        self.setTitleColor(self.titleLabel?.textColor.withAlphaComponent(1), for: .normal)
+        activityIndicator.stopAnimating()
     }
     
 }

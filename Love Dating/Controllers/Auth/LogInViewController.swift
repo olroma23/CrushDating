@@ -29,7 +29,6 @@ class LogInViewController: UIViewController {
     
     weak var delegate: AuthNavigationDelegate?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -68,9 +67,11 @@ class LogInViewController: UIViewController {
     }
     
     @objc private func loginButtonTapped() {
+        let activityIndicator = self.loginButton.addActivityIndicator(color: .white)
         AuthService.shared.login(email: emailTF.text, password: passwordTF.text) { (result) in
             switch result {
             case .success(let user):
+                activityIndicator.startAnimating()
                 self.showAlert(title: "Success", message: "You're logged in!") {
                     FirestoreService.shared.getUserData(user: user) { (result) in
                         switch result {
@@ -78,16 +79,20 @@ class LogInViewController: UIViewController {
                             let mainTabBarVC = MainTabBarViewController(currentUser: mPeople)
                             mainTabBarVC.modalPresentationStyle = .fullScreen
                             self.present(mainTabBarVC, animated: true)
-                        case .failure(let error):
+                        case .failure(_):
                             self.navigationController?.pushViewController(SetupProfileViewController(currentUser: user), animated: true)
                         }
+                        self.loginButton.stopActivityIndicator(activityIndicator: activityIndicator)
                     }
                 }
             case .failure(let error):
-                self.showAlert(title: "Error", message: "\(error.localizedDescription)")
-                
+                activityIndicator.startAnimating()
+                self.showAlert(title: "Error", message: "\(error.localizedDescription)") {
+                    self.loginButton.stopActivityIndicator(activityIndicator: activityIndicator)
+                }
             }
         }
+        
     }
 }
 

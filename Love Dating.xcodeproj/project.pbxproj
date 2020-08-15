@@ -50,6 +50,7 @@
 		ECC4727224C9FE78006B800A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECC4727024C9FE78006B800A /* LaunchScreen.storyboard */; };
 		ECC4727A24C9FF59006B800A /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC4727924C9FF59006B800A /* AuthViewController.swift */; };
 		ECC4727C24CA19AB006B800A /* UIButton + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC4727B24CA19AB006B800A /* UIButton + Extension.swift */; };
+		ECD3E89224E8576000B723B8 /* MMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD3E89124E8576000B723B8 /* MMessage.swift */; };
 		ECEF76C824CA2048000E39B2 /* UILabel + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEF76C724CA2048000E39B2 /* UILabel + Extension.swift */; };
 		ECEF76CA24CA24E2000E39B2 /* UIImageView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEF76C924CA24E2000E39B2 /* UIImageView + Extension.swift */; };
 		ECEF76CC24CA3121000E39B2 /* UIFont + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEF76CB24CA3121000E39B2 /* UIFont + Extension.swift */; };
@@ -105,6 +106,7 @@
 		ECC4727324C9FE78006B800A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECC4727924C9FF59006B800A /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		ECC4727B24CA19AB006B800A /* UIButton + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
+		ECD3E89124E8576000B723B8 /* MMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMessage.swift; sourceTree = "<group>"; };
 		ECEF76C724CA2048000E39B2 /* UILabel + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extension.swift"; sourceTree = "<group>"; };
 		ECEF76C924CA24E2000E39B2 /* UIImageView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Extension.swift"; sourceTree = "<group>"; };
 		ECEF76CB24CA3121000E39B2 /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				EC80E10D24D604ED0040A589 /* MPeople.swift */,
 				EC6429CF24E1B0D600F7AEB5 /* SampleModel.swift */,
 				EC80E10F24D6050F0040A589 /* MChat.swift */,
+				ECD3E89124E8576000B723B8 /* MMessage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				EC8B66C224D6FFF500973C82 /* UIViewController + Extension.swift in Sources */,
 				ECEF76C824CA2048000E39B2 /* UILabel + Extension.swift in Sources */,
 				EC7A7F2E24CB8C7A0004B5D0 /* UITextFIeld + Extension.swift in Sources */,
+				ECD3E89224E8576000B723B8 /* MMessage.swift in Sources */,
 				EC6429D024E1B0D600F7AEB5 /* SampleModel.swift in Sources */,
 				EC940B3824DE0C2B003F2C87 /* CellConfiguration.swift in Sources */,
 				ECAEC5E124D1E3F200F472AA /* Bundle-Decodable .swift in Sources */,

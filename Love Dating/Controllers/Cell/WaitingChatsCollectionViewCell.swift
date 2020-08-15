@@ -23,7 +23,7 @@ class WaitingChatsCollectionViewCell: UICollectionViewCell, CellConfiguration {
     
     func configure<U>(with value: U) where U : Hashable {
         let value = value as! MChat
-         friendImageView.image = UIImage(named: value.userImageString)
+//        friendImageView.image = UIImage(named: value.friendUserImageString)
     }
     
     required init?(coder: NSCoder) {

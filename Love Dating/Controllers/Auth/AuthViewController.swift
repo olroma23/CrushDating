@@ -46,7 +46,6 @@ class AuthViewController: UIViewController {
     
     @objc private func emailButtonTapped() {
         self.navigationController?.pushViewController(signUpVC, animated: true)
-        
     }
     
     @objc private func loginButtonTapped() {
@@ -54,9 +53,8 @@ class AuthViewController: UIViewController {
     }
     
     @objc private func googleButtonTapped() {
-         GIDSignIn.sharedInstance()?.presentingViewController = self
-         GIDSignIn.sharedInstance().signIn()
-        
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance().signIn()
     }
     
     
@@ -79,90 +77,90 @@ extension AuthViewController: GIDSignInDelegate {
                             mainTabBar.modalPresentationStyle = .fullScreen
                             self.present(mainTabBar, animated: true)
                         }
-                            case .failure(_):
-                            self.showAlert(title: "", message: "Please, set up your profile") {
-                                self.navigationController?.pushViewController(SetupProfileViewController(currentUser: user), animated: true)
-                            }
+                    case .failure(_):
+                        self.showAlert(title: "", message: "Please, set up your profile") {
+                            self.navigationController?.pushViewController(SetupProfileViewController(currentUser: user), animated: true)
                         }
                     }
-                    case .failure(let error):
-                        self.showAlert(title: "Error", message: "\(error.localizedDescription)")
                 }
+            case .failure(let error):
+                self.showAlert(title: "Error", message: "\(error.localizedDescription)")
             }
         }
-        
-        
-        
-        
     }
     
     
-    // MARK: Setup constraints
-    
-    extension AuthViewController {
-        
-        private func setupConstraints() {
-            
-            view.addSubview(logoImageView)
-            
-            logoImageView.translatesAutoresizingMaskIntoConstraints = false
-            logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 120).isActive = true
-            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            logoImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
-            
-            let googleView = ButtonFormView(label: googleLabel, button: googleButton)
-            let emailView = ButtonFormView(label: emailLabel, button: emailButton)
-            let loginView = ButtonFormView(label: loginLabel, button: loginButton)
-            
-            let stackView = UIStackView(arrangedSubviews: [googleView, emailView, loginView], axis: .vertical, spacing: 35)
-            
-            view.addSubview(stackView)
-            stackView.translatesAutoresizingMaskIntoConstraints = false
-            
-            NSLayoutConstraint.activate([stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 110),
-                                         stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-                                         stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
-            ])
-            
-        }
-        
-    }
     
     
-    extension AuthViewController: AuthNavigationDelegate {
+}
+
+
+// MARK: Setup constraints
+
+extension AuthViewController {
+    
+    private func setupConstraints() {
         
-        func toLoginVC() {
-            self.navigationController?.pushViewController(loginVC, animated: true)
-        }
+        view.addSubview(logoImageView)
         
-        func toSignUpVC() {
-            self.navigationController?.pushViewController(signUpVC, animated: true)
-        }
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        logoImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 120).isActive = true
+        logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        logoImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
         
+        let googleView = ButtonFormView(label: googleLabel, button: googleButton)
+        let emailView = ButtonFormView(label: emailLabel, button: emailButton)
+        let loginView = ButtonFormView(label: loginLabel, button: loginButton)
+        
+        let stackView = UIStackView(arrangedSubviews: [googleView, emailView, loginView], axis: .vertical, spacing: 35)
+        
+        view.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 110),
+                                     stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+                                     stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
+        ])
         
     }
     
+}
+
+
+extension AuthViewController: AuthNavigationDelegate {
     
-    // MARK: SwiftUI configuration
+    func toLoginVC() {
+        self.navigationController?.pushViewController(loginVC, animated: true)
+    }
     
-    import SwiftUI
+    func toSignUpVC() {
+        self.navigationController?.pushViewController(signUpVC, animated: true)
+    }
     
-    struct ViewControllerProvider: PreviewProvider {
-        static var previews: some View {
-            ContainerView().edgesIgnoringSafeArea(.all)
+    
+}
+
+
+// MARK: SwiftUI configuration
+
+import SwiftUI
+
+struct ViewControllerProvider: PreviewProvider {
+    static var previews: some View {
+        ContainerView().edgesIgnoringSafeArea(.all)
+    }
+    
+    struct ContainerView: UIViewControllerRepresentable {
+        
+        typealias UIViewControllerType = AuthViewController
+        let viewController = AuthViewController()
+        
+        func makeUIViewController(context: Context) -> AuthViewController {
+            return viewController
         }
         
-        struct ContainerView: UIViewControllerRepresentable {
+        func updateUIViewController(_ uiViewController: AuthViewController, context: Context) {
             
-            typealias UIViewControllerType = AuthViewController
-            let viewController = AuthViewController()
-            
-            func makeUIViewController(context: Context) -> AuthViewController {
-                return viewController
-            }
-            
-            func updateUIViewController(_ uiViewController: AuthViewController, context: Context) {
-                
-            }
         }
+    }
 }

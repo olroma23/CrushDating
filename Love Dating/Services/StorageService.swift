@@ -26,8 +26,8 @@ class StorageService {
     }
     
     func upload(photo: UIImage, completion: @escaping (Result<URL, Error>) -> ()) {
-        guard let scaledImage = photo.resizeImage(480, opaque: true)
-            .jpegData(compressionQuality: 0.4) else { return }
+        guard let scaledImage = photo.resizeImage(600, opaque: true)
+            .jpegData(compressionQuality: 0.6) else { return }
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
         avatarsRef.child(currentUserId).putData(scaledImage, metadata: metadata) { (metadata, error) in

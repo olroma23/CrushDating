@@ -67,7 +67,6 @@ class InsertableTextField: UITextField {
         self.rightView = button
         self.rightView?.frame = CGRect(x: 0, y: 0, width: 15, height: 15)
         self.rightViewMode = .always
-        
     }
     
     

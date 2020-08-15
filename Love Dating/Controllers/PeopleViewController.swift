@@ -64,6 +64,7 @@ class PeopleViewController: UIViewController {
                 self.showAlert(title: "Error", message: error.localizedDescription)
             }
         })
+        
     }
     
     @objc private func logOut() {
@@ -93,6 +94,7 @@ class PeopleViewController: UIViewController {
         view.addSubview(collectionView!)
         collectionView?.register(PeopleCollectionViewCell.self, forCellWithReuseIdentifier: PeopleCollectionViewCell.reuseID)
         collectionView?.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reuseID)
+        collectionView?.delegate = self
     }
     
     private func setupNavigationBar() {
@@ -196,6 +198,19 @@ extension PeopleViewController {
             return sectionHeader
         }
         
+    }
+}
+
+
+// MARK: UICollectionViewDelegate
+
+extension PeopleViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let user = self.dataSource?.itemIdentifier(for: indexPath) else { return }
+        let profileVC = ProfileViewController(user: user)
+        self.navigationController?.pushViewController(profileVC, animated: true)
+
     }
 }
 

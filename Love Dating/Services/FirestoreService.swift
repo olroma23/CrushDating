@@ -13,6 +13,7 @@ class FirestoreService {
     
     static let shared = FirestoreService()
     let db = Firestore.firestore()
+    var currentUser: MPeople!
     private var usersRef: CollectionReference {
         return db.collection("users")
     }
@@ -25,6 +26,7 @@ class FirestoreService {
                     completion(.failure(UserError.canNotUnwrapUser))
                     return
                 }
+                self.currentUser = mPeople
                 completion(.success(mPeople))
             } else {
                 completion(.failure(UserError.canNotGetUserInfo))
@@ -42,7 +44,7 @@ class FirestoreService {
         guard avatarImage != #imageLiteral(resourceName: "user") else {
             completion(.failure(UserError.photoNotExists))
             return
-         }
+        }
         
         var mPeople = MPeople(username: username!, email: email, avatarImage: "not exists", description: description!, sex: sex!, uid: id)
         StorageService.shared.upload(photo: avatarImage!) { (result) in
@@ -58,6 +60,33 @@ class FirestoreService {
                 }
             case .failure(let error):
                 completion(.failure(error))
+            }
+        }
+    }
+    
+    func createWaitingChat(content: String, reciever: MPeople, completion: @escaping(Result<Void, Error>) -> ()) {
+        
+        let reference = db.collection(["users", reciever.id, "waitingChats"].joined(separator: "/"))
+        let messageRef = reference.document(self.currentUser.id).collection("messages")
+        
+        let message = MMessage(user: currentUser, content: content)
+        
+        let chat = MChat(friendUsername: currentUser.username,
+                         friendUserImageString: currentUser.avatarImage,
+                         lastMessage: message.content,
+                         friendId: currentUser.id)
+        
+        reference.document(currentUser.id).setData(chat.representation) { (error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            messageRef.addDocument(data: message.representation) { (error) in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                completion(.success(Void()))
             }
         }
     }

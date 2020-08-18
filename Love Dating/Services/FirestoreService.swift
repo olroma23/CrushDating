@@ -98,7 +98,7 @@ class FirestoreService {
     }
     
     
-    func deleteChars(chat: MChat, completion: @escaping(Result<Void, Error>) -> ()) {
+    func deleteWaitingChats(chat: MChat, completion: @escaping(Result<Void, Error>) -> ()) {
         waitingChatsRef.document(chat.friendId).delete { (error) in
             if let error = error {
                 completion(.failure(error))
@@ -149,10 +149,24 @@ class FirestoreService {
     func changeToActive(chat: MChat, completion: @escaping(Result<Void, Error>) -> ()) {
         getWaitingChatMessages(chat: chat) { (result) in
             switch result {
-            case .success(_):
-                
-            case .failure(_):
-                
+            case .success(let messages):
+                self.deleteWaitingChats(chat: chat) { (result) in
+                    switch result {
+                    case .success():
+                        self.createActiveChat(chat: chat, messages: messages) { (result) in
+                            switch result {
+                            case .success():
+                                completion(.success(Void()))
+                            case .failure(let error):
+                                completion(.failure(error))
+                            }
+                        }
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
+                }
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }

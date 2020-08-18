@@ -15,6 +15,7 @@ class ListViewController: UIViewController {
     var waitingChats = [MChat]()
     
     private var waitingChatsListener: ListenerRegistration?
+    private var activeChatsListener: ListenerRegistration?
     
     enum Section: Int, CaseIterable {
         case waitingChats, activeChats
@@ -45,6 +46,7 @@ class ListViewController: UIViewController {
     
     deinit {
         waitingChatsListener?.remove()
+        activeChatsListener?.remove()
     }
     
     override func viewDidLoad() {
@@ -66,6 +68,16 @@ class ListViewController: UIViewController {
                     self.navigationController?.present(navigationController, animated: true, completion: nil)
                 }
                 self.waitingChats = chats
+                self.reloadData()
+            case .failure(let error):
+                self.showAlert(title: "Error", message: error.localizedDescription)
+            }
+        })
+        
+        activeChatsListener = ListenerService.shared.activeChatsObserve(chats: activeChats, completion: { (result) in
+            switch result {
+            case .success(let chats):
+                self.activeChats = chats
                 self.reloadData()
             case .failure(let error):
                 self.showAlert(title: "Error", message: error.localizedDescription)
@@ -244,7 +256,7 @@ extension ListViewController: UICollectionViewDelegate {
 extension ListViewController: WaitingChatsNavigation {
     
     func removeWaitingChats(chat: MChat) {
-        FirestoreService.shared.deleteChars(chat: chat) { (result) in
+        FirestoreService.shared.deleteWaitingChats(chat: chat) { (result) in
             switch result {
             case .success():
                 self.showAlert(title: "Success", message: "Chat is declined")
@@ -255,7 +267,14 @@ extension ListViewController: WaitingChatsNavigation {
     }
     
     func chatToActive(chat: MChat) {
-        print(#function)
+        FirestoreService.shared.changeToActive(chat: chat) { (result) in
+            switch result {
+            case .success():
+                self.showAlert(title: "Success", message: "Have a good time with \(chat.friendUsername)")
+            case .failure(let error):
+                self.showAlert(title: "Error", message: error.localizedDescription)
+            }
+        }
     }
     
     

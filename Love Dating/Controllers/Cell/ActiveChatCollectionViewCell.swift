@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ActiveChatCollectionViewCell: UICollectionViewCell, CellConfiguration {
     
@@ -34,9 +35,9 @@ class ActiveChatCollectionViewCell: UICollectionViewCell, CellConfiguration {
     
     func configure<U>(with value: U) where U : Hashable {
         let value = value as! MChat
-//        friendImageView.image = UIImage(named: value.friendUserImageString)
-//        friendName.text = value.friendUsername
-//        lastMessage.text = value.lastMessage
+        friendImageView.sd_setImage(with: URL(string: value.friendUserImageString), completed: nil)
+        friendName.text = value.friendUsername
+        lastMessage.text = value.lastMessage
     }
     
     private func setupConstraints() {

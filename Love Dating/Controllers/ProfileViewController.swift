@@ -25,7 +25,6 @@ class ProfileViewController: UIViewController {
         self.aboutLabel.text = user.description
         self.imageView.sd_setImage(with: URL(string: user.avatarImage), completed: nil)
         super.init(nibName: nil, bundle: nil)
-        hidesBottomBarWhenPushed = true
     }
     
     required init?(coder: NSCoder) {
@@ -40,6 +39,15 @@ class ProfileViewController: UIViewController {
         setupConstraints()
         aboutLabel.textColor = .systemGray
                 
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(rightButtonTapped))
+    }
+    
+    @objc private func rightButtonTapped() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
     private func customizeElements() {
@@ -70,6 +78,7 @@ class ProfileViewController: UIViewController {
             switch result {
             case .success():
                 print("ok")
+                self.dismiss(animated: true, completion: nil)
             case .failure(let error):
                 self.showAlert(title: "Error", message: error.localizedDescription)
             }

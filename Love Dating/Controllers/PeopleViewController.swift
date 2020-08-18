@@ -209,8 +209,8 @@ extension PeopleViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let user = self.dataSource?.itemIdentifier(for: indexPath) else { return }
         let profileVC = ProfileViewController(user: user)
-        self.navigationController?.pushViewController(profileVC, animated: true)
-
+        let navigationController = UINavigationController(rootViewController: profileVC)
+        self.navigationController?.present(navigationController, animated: true, completion: nil)
     }
 }
 

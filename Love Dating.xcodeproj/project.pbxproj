@@ -51,6 +51,7 @@
 		ECC4727A24C9FF59006B800A /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC4727924C9FF59006B800A /* AuthViewController.swift */; };
 		ECC4727C24CA19AB006B800A /* UIButton + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC4727B24CA19AB006B800A /* UIButton + Extension.swift */; };
 		ECD3E89224E8576000B723B8 /* MMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD3E89124E8576000B723B8 /* MMessage.swift */; };
+		ECD3E89424EAC67F00B723B8 /* WaitingChatsNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD3E89324EAC67F00B723B8 /* WaitingChatsNavigation.swift */; };
 		ECEF76C824CA2048000E39B2 /* UILabel + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEF76C724CA2048000E39B2 /* UILabel + Extension.swift */; };
 		ECEF76CA24CA24E2000E39B2 /* UIImageView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEF76C924CA24E2000E39B2 /* UIImageView + Extension.swift */; };
 		ECEF76CC24CA3121000E39B2 /* UIFont + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEF76CB24CA3121000E39B2 /* UIFont + Extension.swift */; };
@@ -107,6 +108,7 @@
 		ECC4727924C9FF59006B800A /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		ECC4727B24CA19AB006B800A /* UIButton + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
 		ECD3E89124E8576000B723B8 /* MMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMessage.swift; sourceTree = "<group>"; };
+		ECD3E89324EAC67F00B723B8 /* WaitingChatsNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingChatsNavigation.swift; sourceTree = "<group>"; };
 		ECEF76C724CA2048000E39B2 /* UILabel + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extension.swift"; sourceTree = "<group>"; };
 		ECEF76C924CA24E2000E39B2 /* UIImageView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Extension.swift"; sourceTree = "<group>"; };
 		ECEF76CB24CA3121000E39B2 /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			children = (
 				EC940B3524DE0BD8003F2C87 /* AuthNavigationDelegate.swift */,
 				EC940B3724DE0C2B003F2C87 /* CellConfiguration.swift */,
+				ECD3E89324EAC67F00B723B8 /* WaitingChatsNavigation.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				ECAEC5E324D20BAD00F472AA /* ActiveChatCollectionViewCell.swift in Sources */,
 				ECEF76D024CB5E05000E39B2 /* ButtonFormView.swift in Sources */,
 				EC80E10824D5A5160040A589 /* SectionHeader.swift in Sources */,
+				ECD3E89424EAC67F00B723B8 /* WaitingChatsNavigation.swift in Sources */,
 				EC8B66C824D9863A00973C82 /* UIView + Extension.swift in Sources */,
 				ECB3E84424D07C8D00B490FE /* PeopleViewController.swift in Sources */,
 				EC7A7F2C24CB854D0004B5D0 /* SignUpViewController.swift in Sources */,

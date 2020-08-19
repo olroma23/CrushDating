@@ -44,6 +44,8 @@
 		ECB6ECD224CDF8F60026CD73 /* SetupProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6ECD124CDF8F60026CD73 /* SetupProfileViewController.swift */; };
 		ECB6ECD424CE1D030026CD73 /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6ECD324CE1D030026CD73 /* UIImage + Extension.swift */; };
 		ECB6ECD624CE1F4B0026CD73 /* AddPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6ECD524CE1F4B0026CD73 /* AddPhotoView.swift */; };
+		ECBFF42D24EC1BCC008A79CA /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBFF42C24EC1BCC008A79CA /* ChatViewController.swift */; };
+		ECBFF42F24EC32D1008A79CA /* SenderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBFF42E24EC32D1008A79CA /* SenderModel.swift */; };
 		ECC4726624C9FE76006B800A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC4726524C9FE76006B800A /* AppDelegate.swift */; };
 		ECC4726824C9FE76006B800A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC4726724C9FE76006B800A /* SceneDelegate.swift */; };
 		ECC4726F24C9FE78006B800A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECC4726E24C9FE78006B800A /* Assets.xcassets */; };
@@ -99,6 +101,8 @@
 		ECB6ECD124CDF8F60026CD73 /* SetupProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupProfileViewController.swift; sourceTree = "<group>"; };
 		ECB6ECD324CE1D030026CD73 /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
 		ECB6ECD524CE1F4B0026CD73 /* AddPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotoView.swift; sourceTree = "<group>"; };
+		ECBFF42C24EC1BCC008A79CA /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		ECBFF42E24EC32D1008A79CA /* SenderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderModel.swift; sourceTree = "<group>"; };
 		ECC4726224C9FE76006B800A /* Crush Dating.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Crush Dating.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC4726524C9FE76006B800A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECC4726724C9FE76006B800A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -152,6 +156,7 @@
 				EC6429CF24E1B0D600F7AEB5 /* SampleModel.swift */,
 				EC80E10F24D6050F0040A589 /* MChat.swift */,
 				ECD3E89124E8576000B723B8 /* MMessage.swift */,
+				ECBFF42E24EC32D1008A79CA /* SenderModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -220,6 +225,7 @@
 				EC80E10724D5A5160040A589 /* SectionHeader.swift */,
 				EC8B66C324D748C600973C82 /* ProfileViewController.swift */,
 				EC06E06C24D999F400B4336C /* ChatRequestViewController.swift */,
+				ECBFF42C24EC1BCC008A79CA /* ChatViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -430,10 +436,12 @@
 			files = (
 				ECEF76D224CB756D000E39B2 /* StackView + Extension.swift in Sources */,
 				EC940B3A24DEA03F003F2C87 /* FirestoreService.swift in Sources */,
+				ECBFF42D24EC1BCC008A79CA /* ChatViewController.swift in Sources */,
 				ECEF76CA24CA24E2000E39B2 /* UIImageView + Extension.swift in Sources */,
 				EC940B3C24DF1F99003F2C87 /* UserError.swift in Sources */,
 				EC80E10E24D604ED0040A589 /* MPeople.swift in Sources */,
 				EC6429D224E30C7700F7AEB5 /* StorageService.swift in Sources */,
+				ECBFF42F24EC32D1008A79CA /* SenderModel.swift in Sources */,
 				ECC4727A24C9FF59006B800A /* AuthViewController.swift in Sources */,
 				ECB3E84224D07C5400B490FE /* MainTabBarViewController.swift in Sources */,
 				ECAEC5E324D20BAD00F472AA /* ActiveChatCollectionViewCell.swift in Sources */,

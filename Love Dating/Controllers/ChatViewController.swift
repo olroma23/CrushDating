@@ -10,12 +10,14 @@ import UIKit
 import MessageKit
 import MessageUI
 import InputBarAccessoryView
+import FirebaseFirestore
 
 class ChatViewController: MessagesViewController {
     
     private let user: MPeople
     private let chat: MChat
     private var messages: [MMessage] = []
+    private var messageListener: ListenerRegistration?
     
     init(chat: MChat, user: MPeople) {
         self.chat = chat
@@ -29,6 +31,10 @@ class ChatViewController: MessagesViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        messageListener?.remove()
+    }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -36,6 +42,8 @@ class ChatViewController: MessagesViewController {
         if let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
             layout.textMessageSizeCalculator.outgoingAvatarSize = .zero
             layout.textMessageSizeCalculator.incomingAvatarSize = .zero
+            layout.photoMessageSizeCalculator.incomingAvatarSize = .zero
+            layout.photoMessageSizeCalculator.outgoingAvatarSize = .zero
         }
         
         configureMessageInputBar()
@@ -44,14 +52,44 @@ class ChatViewController: MessagesViewController {
         messagesCollectionView.messagesDisplayDelegate = self
         messageInputBar.delegate = self
         messagesCollectionView.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.9725490196, blue: 1, alpha: 1)
-
+        
+        messageListener = ListenerService.shared.messageObserve(chat: chat, completion: { (result) in
+            switch result {
+            case .success(var message):
+                if let urlString = message.downloadURL {
+                    StorageService.shared.downloadImage(stringURL: urlString) { [weak self] (result) in
+                        guard let self = self else { return }
+                        switch result {
+                        case .success(let image):
+                            message.image = image
+                            self.insertNewMessage(message: message)
+                        case .failure(let error):
+                            self.showAlert(title: "Error", message: error.localizedDescription)
+                        }
+                    }
+                } else {
+                    self.insertNewMessage(message: message)
+                }
+            case .failure(let error):
+                self.showAlert(title: "Error", message: error.localizedDescription)
+            }
+        })
+        
     }
     
     private func insertNewMessage(message: MMessage) {
         guard !messages.contains(message) else { return }
         messages.append(message)
         messages.sort()
+        let islatestMessage = messages.firstIndex(of: message) == (messages.count - 1)
+        let shouldScrollToBottom = messagesCollectionView.isAtBottom && islatestMessage
         messagesCollectionView.reloadData()
+        if shouldScrollToBottom {
+            DispatchQueue.main.async {
+                self.messagesCollectionView.scrollToBottom(animated: true)
+            }
+        }
+        
     }
     
     private func configureMessageInputBar() {
@@ -65,26 +103,74 @@ class ChatViewController: MessagesViewController {
         messageInputBar.inputTextView.layer.cornerRadius = 18.0
         messageInputBar.inputTextView.layer.masksToBounds = true
         messageInputBar.inputTextView.scrollIndicatorInsets = UIEdgeInsets(top: 14, left: 0, bottom: 14, right: 0)
-        messageInputBar.inputTextView.heightAnchor.constraint(equalToConstant: 40).isActive = true
         messageInputBar.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         messageInputBar.layer.shadowRadius = 5
         messageInputBar.layer.shadowOpacity = 0
         messageInputBar.layer.shadowOffset = CGSize(width: 0, height: 0)
         messageInputBar.middleContentViewPadding = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
-//        configureSendButton()
+        //        configureSendButton()
+        configureCameraIcon()
     }
     
-//    private func configureSendButton() {
-//        messageInputBar.sendButton.setImage(UIImage(systemName: "arrow.turn.right.up", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))?.withTintColor(.systemBlue, renderingMode: .alwaysOriginal), for: .normal)
-//        messageInputBar.sendButton.applyGradients(cornerRadius: 10)
-//        messageInputBar.setRightStackViewWidthConstant(to: 56, animated: false)
-//        messageInputBar.sendButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 20)
-//        messageInputBar.sendButton.setSize(CGSize(width: 48, height: 48), animated: false)
-//        messageInputBar.middleContentViewPadding.right = -45
-//        messageInputBar.sendButton.title = ""
-//    }
-
-
+    private func configureCameraIcon() {
+        let cameraItem = InputBarButtonItem(type: .system)
+        cameraItem.tintColor = .systemRed
+        let cameraImage = UIImage(systemName: "camera")!
+        cameraItem.image = cameraImage
+        
+        cameraItem.addTarget(self, action: #selector(cameraItemPressed), for: .touchUpInside)
+        cameraItem.setSize(CGSize(width: 60, height: 30), animated: false)
+        messageInputBar.leftStackView.alignment = .center
+        messageInputBar.setLeftStackViewWidthConstant(to: 50, animated: false)
+        messageInputBar.setStackViewItems([cameraItem], forStack: .left, animated: false)
+        
+    }
+    
+    @objc private func cameraItemPressed() {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            picker.sourceType = .camera
+        } else {
+            picker.sourceType = .photoLibrary
+        }
+        
+        present(picker, animated: true)
+        
+    }
+    
+    private func sendPhoto(image: UIImage) {
+        StorageService.shared.uploadImageMessage(photo: image, to: chat) { (result) in
+            switch result {
+            case .success(let url):
+                var message = MMessage(user: self.user, image: image)
+                message.downloadURL = url.absoluteString
+                FirestoreService.shared.sendMessage(chat: self.chat, message: message) { (result) in
+                    switch result {
+                    case .success():
+                        self.messagesCollectionView.scrollToBottom(animated: true)
+                    case .failure(let error):
+                        self.showAlert(title: "Error", message: error.localizedDescription)
+                    }
+                }
+            case .failure(let error):
+                self.showAlert(title: "Error", message: error.localizedDescription)
+            }
+        }
+    }
+    
+    //    private func configureSendButton() {
+    //        messageInputBar.sendButton.setImage(UIImage(systemName: "arrow.turn.right.up", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))?.withTintColor(.systemBlue, renderingMode: .alwaysOriginal), for: .normal)
+    //        messageInputBar.sendButton.applyGradients(cornerRadius: 10)
+    //        messageInputBar.setRightStackViewWidthConstant(to: 56, animated: false)
+    //        messageInputBar.sendButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 20)
+    //        messageInputBar.sendButton.setSize(CGSize(width: 48, height: 48), animated: false)
+    //        messageInputBar.middleContentViewPadding.right = -45
+    //        messageInputBar.sendButton.title = ""
+    //    }
+    
+    
 }
 
 //MARK: MessagesDataSource
@@ -107,6 +193,19 @@ extension ChatViewController: MessagesDataSource {
         return messages.count
     }
     
+    func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        if indexPath.item % 4 == 0 {
+            return NSAttributedString(string: MessageKitDateFormatter.shared.string(from: message.sentDate),
+                                      attributes: [
+                                        NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 10),
+                                        NSAttributedString.Key.foregroundColor: UIColor.darkGray ])
+        } else {
+            return nil
+        }
+    }
+    
+    
+    
     
 }
 
@@ -116,6 +215,14 @@ extension ChatViewController: MessagesLayoutDelegate {
     
     func footerViewSize(for section: Int, in messagesCollectionView: MessagesCollectionView) -> CGSize {
         return CGSize(width: 0, height: 8)
+    }
+    
+    func cellTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        if indexPath.item % 4 == 0 {
+            return 30
+        } else {
+            return 0
+        }
     }
     
 }
@@ -153,10 +260,42 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
     
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         let message = MMessage(user: user, content: text)
-        insertNewMessage(message: message)
+        FirestoreService.shared.sendMessage(chat: chat, message: message) { (result) in
+            switch result {
+            case .success():
+                self.messagesCollectionView.scrollToBottom(animated: true)
+            case .failure(let error):
+                self.showAlert(title: "Error", message: error.localizedDescription)
+            }
+        }
         inputBar.inputTextView.text = ""
     }
 }
 
+extension ChatViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
+        sendPhoto(image: image)
+    }
+}
+
+
+extension UIScrollView {
+    
+    var isAtBottom: Bool {
+        return contentOffset.y >= verticalOffsetForBottom
+    }
+    
+    var verticalOffsetForBottom: CGFloat {
+        let scrollViewHeight = bounds.height
+        let scrollContentSizeHeight = contentSize.height
+        let bottomInset = contentInset.bottom
+        let scrollViewBottomOffset = scrollContentSizeHeight + bottomInset - scrollViewHeight
+        return scrollViewBottomOffset
+    }
+    
+    
+}
 
 

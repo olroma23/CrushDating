@@ -21,8 +21,8 @@ class ListenerService {
         return Auth.auth().currentUser!.uid
     }
     
-     func usersObserve(users: [MPeople],
-                              completion: @escaping (Result<[MPeople], Error>) -> ()) -> ListenerRegistration? {
+    func usersObserve(users: [MPeople],
+                      completion: @escaping (Result<[MPeople], Error>) -> ()) -> ListenerRegistration? {
         var users = users
         let usersListeners = usersRef.addSnapshotListener { (quarySnapshot, error) in
             guard let snapshot = quarySnapshot else {
@@ -55,8 +55,8 @@ class ListenerService {
     
     
     
-     func waitingChatsObserve(chats: [MChat],
-                              completion: @escaping (Result<[MChat], Error>) -> ()) -> ListenerRegistration? {
+    func waitingChatsObserve(chats: [MChat],
+                             completion: @escaping (Result<[MChat], Error>) -> ()) -> ListenerRegistration? {
         var chats = chats
         let chatsRef = db.collection(["users", currentUserId, "waitingChats"].joined(separator: "/"))
         let chatsListener = chatsRef.addSnapshotListener { (querySnapshot, error) in
@@ -84,10 +84,8 @@ class ListenerService {
         
     }
     
-    
-    
-     func activeChatsObserve(chats: [MChat],
-                              completion: @escaping (Result<[MChat], Error>) -> ()) -> ListenerRegistration? {
+    func activeChatsObserve(chats: [MChat],
+                            completion: @escaping (Result<[MChat], Error>) -> ()) -> ListenerRegistration? {
         var chats = chats
         let chatsRef = db.collection(["users", currentUserId, "activeChats"].joined(separator: "/"))
         let chatsListener = chatsRef.addSnapshotListener { (querySnapshot, error) in
@@ -115,6 +113,28 @@ class ListenerService {
         
     }
     
+    
+    func messageObserve(chat: MChat, completion: @escaping (Result<MMessage, Error>) -> ()) -> ListenerRegistration? {
+        let ref = usersRef.document(currentUserId).collection("activeChats").document(chat.friendId).collection("messages")
+        let messageListener = ref.addSnapshotListener { (querySnapshot, error) in
+            guard let snapshot = querySnapshot else {
+                completion(.failure(error!))
+                return
+            }
+            snapshot.documentChanges.forEach { (diff) in
+                guard let message = MMessage(document: diff.document) else { return }
+                switch diff.type {
+                case .added:
+                    completion(.success(message))
+                case .modified:
+                    break
+                case .removed:
+                    break
+                }
+            }
+        }
+        return messageListener
+    }
     
     
 }

@@ -21,6 +21,10 @@ class StorageService {
         return storageRef.child("avatars")
     }
     
+    private var chatsRef: StorageReference {
+        return storageRef.child("chats")
+    }
+    
     private var currentUserId: String {
         return Auth.auth().currentUser!.uid
     }
@@ -44,5 +48,44 @@ class StorageService {
             }
         }
     }
+    
+    func uploadImageMessage(photo: UIImage, to chat: MChat, completion: @escaping (Result<URL, Error>) -> ()) {
+        guard let scaledImage = photo.resizeImage(600, opaque: true)
+            .jpegData(compressionQuality: 0.6) else { return }
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
+        let imageName = UUID().uuidString
+        let uid: String = Auth.auth().currentUser!.uid
+        let chatName = [chat.friendUsername, uid].joined()
+        self.chatsRef.child(chatName).child(imageName).putData(scaledImage, metadata: metadata) { (metadata, error) in
+            guard let _ = metadata else {
+                completion(.failure(error!))
+                return
+            }
+            self.chatsRef.child(chatName).child(imageName).downloadURL { (url, error) in
+                guard let donwloadURL = url else {
+                    completion(.failure(error!))
+                    return
+                }
+                completion(.success(donwloadURL))
+
+            }
+
+        }
+    }
+    
+    
+    func downloadImage(stringURL: String, completion: @escaping (Result<UIImage?, Error>) -> ()) {
+        let reference = Storage.storage().reference(forURL: stringURL)
+        let megaByte = Int64(1*1024*1024)
+        reference.getData(maxSize: megaByte) { (data, error) in
+            guard let imageData = data else {
+                completion(.failure(error!))
+                return
+            }
+            completion(.success(UIImage(data: imageData)))
+        }
+    }
+    
     
 }

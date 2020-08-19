@@ -200,8 +200,21 @@ class FirestoreService {
         friendRef.setData(chatforFriend.representation) { (error) in
             if let error = error {
                 completion(.failure(error))
+                return
+            }
+            friendMessageRef.addDocument(data: message.representation) { (error) in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                myMessageRef.addDocument(data: message.representation) { (error) in
+                    if let error = error {
+                        completion(.failure(error))
+                        return
+                    }
+                    completion(.success(Void()))
+                }
             }
         }
     }
-    
 }
